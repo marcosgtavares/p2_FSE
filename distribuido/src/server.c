@@ -21,8 +21,8 @@ float temp, hum;
 int only_once_bme=1;
 
 struct param_adress{
-	float *temp;
-	float *hum;
+	float temp;
+	float hum;
 };
 
 int open_socket(unsigned short servidorPorta){
@@ -57,14 +57,11 @@ void treat_messages(int servidorSocket){
 
 	struct param_adress *th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
-	th->temp=&temp;
-	th->hum=&hum;
-
 	precocious_req(&temp, &hum);
 
 	pthread_t temp_iterator;
 
-	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)&th) ;
+	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
 
     while(1) {
 		clienteLength = sizeof(clienteAddr);
