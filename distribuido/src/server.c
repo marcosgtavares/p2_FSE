@@ -25,6 +25,9 @@ struct param_adress{
 	float hum;
 };
 
+struct param_adress *th = (struct param_adress *)malloc(sizeof(struct param_adress));
+
+
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;
 	struct sockaddr_in servidorAddr;
@@ -54,8 +57,6 @@ void treat_messages(int servidorSocket){
 	int clienteLength;
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
-
-	struct param_adress *th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
 	precocious_req(&temp, &hum);
 
@@ -101,7 +102,11 @@ void TrataClienteTCP(int socketCliente) {
 	if(buffer[0]=='T'){
 		if(only_once_bme){
 			alarm(1);
-
+			
+		}
+		else{
+			temp=th->temp;
+			temp=th->hum;
 		}
 		gcvt(temp, 5, buffer);
 		gcvt(hum, 5, buffer+6);
