@@ -22,6 +22,7 @@ struct param_adress{
 };
 
 void timer(int signum){
+	printf("YAY");
 	time=1;
 }
 
