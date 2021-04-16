@@ -15,7 +15,6 @@
 char initial[9];
 char final[9];
 char input_initial[6];
-int only_once_bme=1;
 
 float temp, hum;
 
@@ -59,6 +58,8 @@ void treat_messages(int servidorSocket){
 	th->temp=&temp;
 	th->hum=&hum;
 
+	precocious_req(&temp, &hum);
+
 	pthread_t temp_iterator;
 
 	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)&th) ;
@@ -100,10 +101,6 @@ void TrataClienteTCP(int socketCliente) {
 
 	if(buffer[0]=='T'){
 		alarm(1);
-		if(only_once_bme){
-			precocious_req(&temp, &hum);
-			only_once_bme=0;
-		}
 		gcvt(temp, 5, buffer);
 		gcvt(hum, 5, buffer+6);
 	}
