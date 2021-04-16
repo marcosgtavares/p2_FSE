@@ -99,16 +99,19 @@ void *req_temp_hum(void *th){
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
     dev->delay_us(100, dev->intf_ptr);
     int fd_bme280;
-	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
+	//fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
 
 	
     while(1){
 		if(time==1){
+
 			alarm(1);
+			fd_bme280=set_i2c_addr_sensor();
 			time=0;
 			rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 			(((struct param_adress *)th)->temp) = (float)comp_data.temperature;
 			(((struct param_adress *)th)->hum) = (float)comp_data.humidity;
+			close(fd_bme280);
 		}
 	}	
 }
