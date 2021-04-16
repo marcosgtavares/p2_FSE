@@ -60,8 +60,9 @@ void sensor_state_atualize(char *current){
 }
 
 void on_off_gadgets(char gadget, char on_off){
-
     if(only_once==0){
+        wiringPiSetup();
+
         pinMode (0, OUTPUT);
         pinMode (1, OUTPUT);
         pinMode (2, OUTPUT);
@@ -94,6 +95,8 @@ void on_off_gadgets(char gadget, char on_off){
 }
 
 void initial_state(char *currentI, char *currentO){
+    wiringPiSetup();
+
     pinMode (6, INPUT);
     pinMode (25, INPUT);
     pinMode (21, INPUT);
