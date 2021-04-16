@@ -7,8 +7,8 @@
 int main(int argc, char *argv[]) {
 
     unsigned short gate = atoi(argv[1]);;
-    char ip[13] = "192.168.0.53";
-    char message2[16] = "urdur";
+    char *ip = argv[2];
+    char *message2 = argv[3];
 
     int cliente = connect_server(gate, ip);
     send_message(message2, cliente);
