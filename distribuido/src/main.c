@@ -8,6 +8,7 @@ int main(int argc, char *argv[]) {
     unsigned short serv = atoi(argv[1]);;
 
     int servsocket=open_socket(serv);
+    close(servsocket);
 
     treat_messages(servsocket);
 
