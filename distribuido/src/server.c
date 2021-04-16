@@ -25,7 +25,7 @@ struct param_adress{
 	float hum;
 };
 
-struct param_adress *th = (struct param_adress *)malloc(sizeof(struct param_adress));
+struct param_adress *th; = (struct param_adress *)malloc(sizeof(struct param_adress));
 
 
 int open_socket(unsigned short servidorPorta){
@@ -61,6 +61,8 @@ void treat_messages(int servidorSocket){
 	precocious_req(&temp, &hum);
 
 	pthread_t temp_iterator;
+
+	th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
 	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
 
