@@ -8,6 +8,8 @@
 #include <fcntl.h>
 #include <wiringPiI2C.h>
 #include <wiringPi.h>
+#include <signal.h>
+
 
 
 

@@ -8,6 +8,8 @@
 #include "../inc/gpio.h"
 #include "../inc/bme280_i2c.h"
 #include <pthread.h>
+#include <signal.h>
+
 
 
 char initial[9];
