@@ -25,7 +25,7 @@ struct param_adress{
 	float hum;
 };
 
-struct param_adress *th; = (struct param_adress *)malloc(sizeof(struct param_adress));
+struct param_adress *th;
 
 
 int open_socket(unsigned short servidorPorta){
