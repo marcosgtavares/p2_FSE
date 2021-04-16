@@ -104,7 +104,7 @@ void TrataClienteTCP(int socketCliente) {
 		gcvt(temp, 5, buffer);
 		gcvt(hum, 5, buffer+6);
 
-		tamanhoMensagem = strlen(buffer);
+		tamanhoRecebido = strlen(buffer);
 	}
 
 	while (tamanhoRecebido > 0) {
