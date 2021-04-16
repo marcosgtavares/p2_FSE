@@ -60,7 +60,7 @@ void TrataClienteTCP(int socketCliente) {
 		printf("Erro no recv()\n");
 
 	if(buffer[0]=='I'){//Estado inicial
-		initial_state(input_initial);
+		initial_state(input_initial,initial);
 		for(int i=0;i<8;i++){
 			buffer[i]=initial[i];
 		}

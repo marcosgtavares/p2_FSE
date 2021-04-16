@@ -79,43 +79,43 @@ void on_off_gadgets(char gadget, char on_off){
     }
 }
 
-void initial_state(char *current){
-	sensor_state_atualize(initial);
+void initial_state(char *currentI, char *currentO){
+	sensor_state_atualize(currentO);
 	if(digitalRead(0)==1){//L1
-        current[0]='L';
+        currentI[0]='L';
     }
 	else{
-		current[0]='D';
+		currentI[0]='D';
 	}
 	if(digitalRead(1)==1){//L2
-        current[1]='L';
+        currentI[1]='L';
     }
 	else{
-		current[1]='D';
+		currentI[1]='D';
 	}
 	if(digitalRead(2)==1){//L3
-        current[2]='L';
+        currentI[2]='L';
     }
 	else{
-		current[2]='D';
+		currentI[2]='D';
 	}
 	if(digitalRead(3)==1){//L4
-        current[3]='L';
+        currentI[3]='L';
     }
 	else{
-		current[3]='D';
+		currentI[3]='D';
 	}
 	if(digitalRead(23)==1){//A1
-        current[4]='L';
+        currentI[4]='L';
     }
 	else{
-		current[4]='D';
+		currentI[4]='D';
 	}
 	if(digitalRead(24)==1){//A2
-        current[5]='L';
+        currentI[5]='L';
     }
 	else{
-		current[5]='D';
+		currentI[5]='D';
 	}
 	
 }
