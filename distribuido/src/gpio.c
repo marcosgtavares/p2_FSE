@@ -59,22 +59,22 @@ void sensor_state_atualize(char *current){
 void on_off_gadgets(char gadget, char on_off){
     switch(gadget){
         case 'A'://L1
-            digitalWrite(0,atoi(on_off));
+            digitalWrite(0,on_off-48);
             break;
         case 'B'://L2
-            digitalWrite(1,atoi(on_off));
+            digitalWrite(1,on_off-48);
             break;
         case 'C'://L3
-            digitalWrite(2,atoi(on_off));
+            digitalWrite(2,on_off-48);
             break;
         case 'D'://L4
-            digitalWrite(3,atoi(on_off));
+            digitalWrite(3,on_off-48);
             break;
         case 'E'://A1
-            digitalWrite(23,atoi(on_off));
+            digitalWrite(23,on_off-48);
             break;
         case 'F'://A2
-            digitalWrite(24,atoi(on_off));
+            digitalWrite(24,on_off-48);
             break;
     }
 }

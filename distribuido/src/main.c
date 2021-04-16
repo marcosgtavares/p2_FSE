@@ -12,7 +12,7 @@
 
 int servsocket;
 
-void monitor_sensor_state(){
+/*void monitor_sensor_state(){
     sensor_state_atualize(initial);
     sensor_state_atualize(final);
     while(!strcmp(initial, final)){
@@ -20,7 +20,7 @@ void monitor_sensor_state(){
     }
     
     //send final
-}
+}*/
 
 void end_exec(int sigint){
     close(servsocket);
