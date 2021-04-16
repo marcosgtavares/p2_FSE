@@ -54,14 +54,14 @@ void treat_messages(int servidorSocket){
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
 
-	struct param_adress *th = malloc(sizeof(struct param_adress));
+	struct param_adress *th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
 	th.temp=&temp;
 	th.hum=&hum;
 
 	pthread_t temp_iterator;
 
-	pthread_create(&temp_iterator, NULL, &req_temp_hum, &th) ;
+	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)&th) ;
 
     while(1) {
 		clienteLength = sizeof(clienteAddr);

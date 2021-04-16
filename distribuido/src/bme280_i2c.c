@@ -88,7 +88,7 @@ int set_i2c_addr_sensor(){
 	return fd;
 }
 
-void req_temp_hum(void *th){
+void *req_temp_hum(void *th){
 	struct bme280_data comp_data;
 	struct bme280_dev *dev;
 
