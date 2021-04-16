@@ -110,7 +110,7 @@ void *req_temp_hum(void *th){
 			((struct param_adress *)th)->temp = (float)comp_data.temperature;
 			((struct param_adress *)th)->hum = (float)comp_data.humidity;
 
-			printf("|%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity );
+			printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  ((struct param_adress *)th)->temp, ((struct param_adress *)th)->hum);
 		}
 	}	
 }
