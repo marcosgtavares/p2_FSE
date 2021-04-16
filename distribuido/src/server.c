@@ -18,6 +18,8 @@ char input_initial[6];
 
 float temp, hum;
 
+int only_once_bme=1;
+
 struct param_adress{
 	float *temp;
 	float *hum;
@@ -100,7 +102,10 @@ void TrataClienteTCP(int socketCliente) {
 	}
 
 	if(buffer[0]=='T'){
-		alarm(1);
+		if(only_once_bme){
+			alarm(1);
+
+		}
 		gcvt(temp, 5, buffer);
 		gcvt(hum, 5, buffer+6);
 
