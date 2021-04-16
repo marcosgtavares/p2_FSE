@@ -4,7 +4,10 @@
 #include <wiringPi.h> 
 #include "../inc/gpio.h"
 
+int only_once=0;
+
 void sensor_state_atualize(char *current){
+
     if(digitalRead(6)==1){//PSAlA
         current[0]='L';
     }
@@ -57,6 +60,17 @@ void sensor_state_atualize(char *current){
 }
 
 void on_off_gadgets(char gadget, char on_off){
+
+    if(only_once==0){
+        pinMode (0, OUTPUT);
+        pinMode (1, OUTPUT);
+        pinMode (2, OUTPUT);
+        pinMode (3, OUTPUT);
+        pinMode (23, OUTPUT);
+        pinMode (24, OUTPUT); 
+
+        only_once=1;
+    }
     switch(gadget){
         case 'A'://L1
             digitalWrite(0,on_off-48);
@@ -80,7 +94,24 @@ void on_off_gadgets(char gadget, char on_off){
 }
 
 void initial_state(char *currentI, char *currentO){
+    pinMode (6, INPUT);
+    pinMode (25, INPUT);
+    pinMode (21, INPUT);
+    pinMode (22, INPUT);
+    pinMode (26, INPUT);
+    pinMode (27, INPUT); 
+    pinMode (28, INPUT); 
+    pinMode (29, INPUT); 
+
 	sensor_state_atualize(currentO);
+
+    pinMode (0, INPUT);
+    pinMode (1, INPUT);
+    pinMode (2, INPUT);
+    pinMode (3, INPUT);
+    pinMode (23, INPUT);
+    pinMode (24, INPUT); 
+
 	if(digitalRead(0)==1){//L1
         currentI[0]='L';
     }
