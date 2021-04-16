@@ -4,10 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "../inc/server.h"
 
 
-void open_socket(){
-    // Abrir Socket
+
+void open_socket(int servidorSocket, unsigned short servidorPorta){
+	struct sockaddr_in servidorAddr;
+	// Abrir Socket
 	if((servidorSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
 		printf("falha no socker do Servidor\n");
 
@@ -29,7 +32,10 @@ void open_socket(){
 
 }
 
-void treat_messages(){
+void treat_messages(int servidorSocket){
+	int clienteLength;
+	int socketCliente;
+	struct sockaddr_in clienteAddr;
     while(1) {
 		clienteLength = sizeof(clienteAddr);
 		if((socketCliente = accept(servidorSocket, (struct sockaddr *) &clienteAddr, &clienteLength)) < 0)

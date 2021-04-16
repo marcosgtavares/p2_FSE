@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "../inc/client.h"
+
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     int clienteSocket;
