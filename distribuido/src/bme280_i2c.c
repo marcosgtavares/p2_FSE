@@ -107,8 +107,8 @@ void *req_temp_hum(void *th){
 			alarm(1);
 			time=0;
 			rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
-			*(((struct param_adress *)th)->temp) = comp_data.temperature;
-			*(((struct param_adress *)th)->hum) = comp_data.humidity;
+			(((struct param_adress *)th)->temp) = comp_data.temperature;
+			(((struct param_adress *)th)->hum) = comp_data.humidity;
 		}
 	}	
 }

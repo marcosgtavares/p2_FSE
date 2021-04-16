@@ -64,7 +64,7 @@ void treat_messages(int servidorSocket){
 
 	pthread_t temp_iterator;
 
-	//pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)&th) ;
+	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)&th) ;
 
     while(1) {
 		clienteLength = sizeof(clienteAddr);
