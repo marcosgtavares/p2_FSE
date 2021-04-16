@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     char message2[16] = "urdur";
 
     int cliente = connect_server(gate, ip);
-    send_message(cliente, message2);
+    send_message(message2, cliente);
 
 
     return 0;
