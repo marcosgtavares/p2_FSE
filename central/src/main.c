@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
 
-    unsigned short gate = 5000;
+    unsigned short gate = 4001;
     char ip[12] = "192.168.0.8";
     char message2[16] = "urdur";
 

@@ -4,7 +4,7 @@
 #include "../inc/client.h"
 
 int main(int argc, char *argv[]) {
-    unsigned short serv = 5000;
+    unsigned short serv = 4001;
 
     int servsocket=open_socket(serv);
 
