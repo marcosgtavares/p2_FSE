@@ -11,6 +11,8 @@ char initial[9];
 char final[9];
 char input_initial[6];
 
+float temp;
+
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;
 	struct sockaddr_in servidorAddr;
@@ -73,6 +75,11 @@ void TrataClienteTCP(int socketCliente) {
 
 	if(buffer[0]=='O'){//Liga, desliga gadgets
 		on_off_gadgets(buffer[1],buffer[2]);
+	}
+
+	if(buffer[0]=='T'){
+		gcvt(temp, 5, buffer);
+
 	}
 
 	while (tamanhoRecebido > 0) {
