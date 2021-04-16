@@ -11,5 +11,7 @@ void print_sensor_data(struct bme280_data *comp_data);
 int8_t stream_sensor_data_normal_mode(struct bme280_dev *dev);
 struct bme280_dev* init_sensor();
 int set_i2c_addr_sensor();
+void req_temp_hum(float *temp, float *hum);
+void precocious_req(float *temp, float *hum);
 
 #endif /* BME280_H_ */

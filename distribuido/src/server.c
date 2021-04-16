@@ -6,12 +6,21 @@
 #include <unistd.h>
 #include "../inc/server.h"
 #include "../inc/gpio.h"
+#include "../inc/bme280_i2c.h"
+#include <pthread.h>
+
 
 char initial[9];
 char final[9];
 char input_initial[6];
+int only_once_bme=1;
 
-float temp;
+float temp, hum;
+
+typedef struct{
+	float *temp;
+	float *hum;
+}param_adress;
 
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;
@@ -42,6 +51,16 @@ void treat_messages(int servidorSocket){
 	int clienteLength;
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
+
+	struct param_adress th;
+
+	th.temp=&temp;
+	th.hum=&hum;
+
+	pthread_t temp_iterator;
+
+	pthread_create(&temp_iterator, NULL, &req_temp_hum, (void *)&th) ;
+
     while(1) {
 		clienteLength = sizeof(clienteAddr);
 		if((socketCliente = accept(servidorSocket, (struct sockaddr *) &clienteAddr, &clienteLength)) < 0)
@@ -78,8 +97,13 @@ void TrataClienteTCP(int socketCliente) {
 	}
 
 	if(buffer[0]=='T'){
+		alarm(1);
+		if(only_once_bme){
+			precocious_req(&temp, &hum);
+			only_once_bme=0;
+		}
 		gcvt(temp, 5, buffer);
-
+		gcvt(hum, 5, buffer+6);
 	}
 
 	while (tamanhoRecebido > 0) {

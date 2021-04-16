@@ -12,6 +12,16 @@
 
 
 int fd;
+int time=0;
+
+typedef struct{
+	float *temp;
+	float *hum;
+}param_adress;
+
+void timer(int signum){
+	time=1;
+}
 
 void user_delay_ms(uint32_t period, void *intf_ptr){
   	usleep(period*1000);
@@ -74,4 +84,45 @@ struct bme280_dev* init_sensor(){
 int set_i2c_addr_sensor(){
   	fd = wiringPiI2CSetup(0x76);
 	return fd;
+}
+
+void req_temp_hum(void *th){
+	struct bme280_data comp_data;
+	struct bme280_dev *dev;
+
+	signal(SIGALRM, timer);
+
+    dev = init_sensor();
+    int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
+    dev->delay_us(100, dev->intf_ptr);
+    int fd_bme280;
+	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
+
+	
+    while(1){
+		if(time==1){
+			alarm(1);
+			time=0;
+			rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
+			*(((struct param_adress *)th)->temp) = comp_data.temperature;
+			*(((struct param_adress *)th)->hum) = comp_data.humidity;
+		}
+	}	
+}
+
+void precocious_req(float *temp, float *hum){
+	struct bme280_data comp_data;
+	struct bme280_dev *dev;
+
+	signal(SIGALRM, timer);
+
+    dev = init_sensor();
+    int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
+    dev->delay_us(100, dev->intf_ptr);
+    int fd_bme280;
+	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
+	rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
+	*temp = comp_data.temperature;
+	*hum = comp_data.humidity;
+	close(fd_bme280);
 }
