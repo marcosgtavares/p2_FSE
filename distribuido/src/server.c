@@ -8,7 +8,8 @@
 
 
 
-void open_socket(int servidorSocket, unsigned short servidorPorta){
+int open_socket(unsigned short servidorPorta){
+	int servidorSocket;
 	struct sockaddr_in servidorAddr;
 	// Abrir Socket
 	if((servidorSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
@@ -28,7 +29,7 @@ void open_socket(int servidorSocket, unsigned short servidorPorta){
 	if(listen(servidorSocket, 10) < 0)
 		printf("Falha no Listen\n");	
 
-    //	close(servidorSocket);
+    return servidorSocket;
 
 }
 
