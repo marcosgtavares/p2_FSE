@@ -108,8 +108,8 @@ void TrataClienteTCP(int socketCliente) {
 			
 		}
 		else{
-			temp=(struct param_adress *)th->temp;
-			temp=(struct param_adress *)th->hum;
+			temp=th->temp;
+			temp=th->hum;
 		}
 		gcvt(temp, 5, buffer);
 		gcvt(hum, 5, buffer+6);
