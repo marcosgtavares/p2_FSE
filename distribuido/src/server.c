@@ -65,7 +65,7 @@ void TrataClienteTCP(int socketCliente) {
 			buffer[i]=initial[i];
 		}
 		for(int i=8;i<14;i++){
-			buffer[i]=input_initial[i];
+			buffer[i]=input_initial[i-8];
 		}
 		buffer[14]='\0';
 		tamanhoRecebido = strlen(buffer);
