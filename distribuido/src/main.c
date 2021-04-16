@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <unistd.h>
+#include <signal.h>
 
 #include "../inc/server.h"
 #include "../inc/client.h"
