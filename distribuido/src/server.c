@@ -104,6 +104,7 @@ void TrataClienteTCP(int socketCliente) {
 	if(buffer[0]=='T'){
 		if(only_once_bme){
 			alarm(1);
+			only_once_bme=0;
 			
 		}
 		else{
