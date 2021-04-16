@@ -101,7 +101,7 @@ void TrataClienteTCP(int socketCliente) {
 
 	if(buffer[0]=='T'){
 		alarm(1);
-		//gcvt(temp, 5, buffer);
+		gcvt(temp, 5, buffer);
 		//gcvt(hum, 5, buffer+6);
 	}
 
