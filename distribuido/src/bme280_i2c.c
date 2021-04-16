@@ -16,10 +16,10 @@
 int fd;
 int time=0;
 
-typedef struct{
+struct param_adress{
 	float *temp;
 	float *hum;
-}param_adress;
+};
 
 void timer(int signum){
 	time=1;
@@ -127,4 +127,5 @@ void precocious_req(float *temp, float *hum){
 	*temp = comp_data.temperature;
 	*hum = comp_data.humidity;
 	close(fd_bme280);
+	free(dev);
 }

@@ -19,10 +19,10 @@ int only_once_bme=1;
 
 float temp, hum;
 
-typedef struct{
+struct param_adress{
 	float *temp;
 	float *hum;
-}param_adress;
+};
 
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;
@@ -56,8 +56,8 @@ void treat_messages(int servidorSocket){
 
 	struct param_adress *th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
-	th.temp=&temp;
-	th.hum=&hum;
+	th->temp=&temp;
+	th->hum=&hum;
 
 	pthread_t temp_iterator;
 
