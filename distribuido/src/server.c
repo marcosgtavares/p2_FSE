@@ -105,14 +105,14 @@ void TrataClienteTCP(int socketCliente) {
 		if(only_once_bme){
 			alarm(1);
 			only_once_bme=0;
-			
+			gcvt(temp, 5, buffer);
+			gcvt(hum, 5, buffer+6);
 		}
 		else{
-			temp=th->temp;
-			temp=th->hum;
+			gcvt(th->temp, 5, buffer);
+			gcvt(th->hum, 5, buffer+6);
 		}
-		gcvt(temp, 5, buffer);
-		gcvt(hum, 5, buffer+6);
+		
 
 		tamanhoRecebido = strlen(buffer);
 	}
