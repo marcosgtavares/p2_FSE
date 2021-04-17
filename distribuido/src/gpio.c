@@ -62,16 +62,15 @@ void sensor_state_atualize(char *current){
 void on_off_gadgets(char gadget, char on_off){
     if(only_once==0){
         wiringPiSetup();
-
-        pinMode (0, OUTPUT);
-        pinMode (1, OUTPUT);
-        pinMode (2, OUTPUT);
-        pinMode (3, OUTPUT);
-        pinMode (23, OUTPUT);
-        pinMode (24, OUTPUT); 
-
         only_once=1;
     }
+    pinMode (0, OUTPUT);
+    pinMode (1, OUTPUT);
+    pinMode (2, OUTPUT);
+    pinMode (3, OUTPUT);
+    pinMode (23, OUTPUT);
+    pinMode (24, OUTPUT); 
+
     switch(gadget){
         case 'A'://L1
             digitalWrite(0,on_off-48);
