@@ -33,11 +33,11 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void treat_messages(void *servidorSocketv){
+void *treat_messages(void *servidorSocketv){
 	int clienteLength;
 	int socketCliente;
 	int servidorSocket = *((int *)servidorSocketv);
-	
+
 	struct sockaddr_in clienteAddr;
     while(1) {
 		clienteLength = sizeof(clienteAddr);
@@ -55,8 +55,12 @@ void TrataClienteTCP(int socketCliente) {
 	char buffer[16];
 	int tamanhoRecebido;
 
-	if((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
+	if((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0){
 		printf("Erro no recv()\n");
+	}
+	else{
+		handle_change_s(buffer);
+	}
 
 	while (tamanhoRecebido > 0) {
 		if(send(socketCliente, buffer, tamanhoRecebido, 0) != tamanhoRecebido)
