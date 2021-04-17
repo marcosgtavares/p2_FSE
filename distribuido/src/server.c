@@ -57,13 +57,14 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void treat_messages(int servidorSocket){
+void *treat_messages(void *servidorSocketv){
 	int clienteLength;
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
 
-	//signal(SIGINT, end_exec1);
-    //signal(SIGTSTP, end_exec1);
+	int servidorSocket = *((int *)servidorSocketv);
+	signal(SIGINT, end_exec1);
+    signal(SIGTSTP, end_exec1);
 
 	precocious_req(&temp, &hum);
 
