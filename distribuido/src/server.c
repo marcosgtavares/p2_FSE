@@ -57,7 +57,7 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void *treat_messages(void *servidorSocketv){
+void treat_messages(void *servidorSocketv){
 	int clienteLength;
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
