@@ -9,7 +9,7 @@ void init_state(char *in_state){
     FILE *fp;
 
 
-    fp=fopen("../controler.txt", 'r');
+    fp=fopen("../controler.txt", "r");
 
     fgets(states, 16, fp);
 
@@ -17,7 +17,7 @@ void init_state(char *in_state){
         states[i+1]=in_state[i];
     }
 
-    fp=fopen("../controler.txt", 'w');
+    fp=fopen("../controler.txt", "w");
 
     fprintf(fp, states);
 }
@@ -26,11 +26,11 @@ void handle_change_s(char *sensor_state){
     FILE *fp;
 
     char states[16];
-    fp=fopen("../controler.txt", 'r');
+    fp=fopen("../controler.txt", "r");
     if(fgetc(fp)=="L"){
         //LIGA ALARME;
     }
-    fp=fopen("../controler.txt", 'r');
+    fp=fopen("../controler.txt", "r");
 
     fgets(states, 16, fp);
 
@@ -38,7 +38,7 @@ void handle_change_s(char *sensor_state){
         states[i+1]=sensor_state[i];
     }
 
-    fp=fopen("../controler.txt", 'w');
+    fp=fopen("../controler.txt", "w");
 
     fprintf(fp, states);
 }
@@ -57,67 +57,67 @@ void handle_on_off(char *on_off){
 
     switch(on_off[2]){
         case 'A'://L1
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[9]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
 
             break;
         case 'B'://L2
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[10]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
             break;
         case 'C'://L3
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[11]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
             break;
         case 'D'://L4
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[12]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
             break;
         case 'E'://A1
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[13]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
             break;
         case 'F'://A2
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[14]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
             break;
         case 'G'://Alarm
-            fp=fopen("../controler.txt", 'r');
+            fp=fopen("../controler.txt", "r");
 
             fgets(states, 16, fp);
 
             states[0]==on_off[3];
-            fp=fopen("../controler.txt", 'w');
+            fp=fopen("../controler.txt", "w");
             fprintf(fp, states);
             break;
     }
