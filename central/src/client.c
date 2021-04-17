@@ -5,6 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "../inc/client.h"
+#include "../inc/control_acess.h"
 
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
@@ -25,7 +26,7 @@ int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     return clienteSocket;
 }
 
-void send_message(char *mensagem, int clienteSocket){
+void send_message(char *mensagem, int clienteSocket, char *t_h){
     char buffer[16];
     int tamanhoMensagem = strlen(mensagem);
     int totalBytesRecebidos;
@@ -40,7 +41,15 @@ void send_message(char *mensagem, int clienteSocket){
 			printf("Não recebeu o total de bytes enviados\n");
 		totalBytesRecebidos += bytesRecebidos;
 		buffer[bytesRecebidos] = '\0';
-		printf("%s\n", buffer);
+		if(buffer[0]=='O'){
+			handle_on_off(buffer);
+		}
+		else if(buffer[0]=='I'){
+			init_state(buffer);
+		}
+		else{
+			t_h=buffer;
+		}
 	}
 	close(clienteSocket);
     //close(clienteSocket);

@@ -6,12 +6,29 @@
 
 int main(int argc, char *argv[]) {
 
-    unsigned short gate = 10122;
-    char ip[] = "192.168.0.52";
-    char *message2 = argv[3];
+    unsigned short servD = 10122;
+    unsigned short servC = 10022;
 
-    int cliente = connect_server(gate, ip);
-    send_message(message2, cliente);
+    pthread_t alarm_watcher;
+    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&servC); 
+
+
+
+    char LL1[]="OA1";
+    char LL2[]="OB1";
+    char LL3[]="OC1";
+    char LL4[]="OD1";
+    char LA1[]="OE1";
+    char LA2[]="OF1";
+
+    char I='I';
+    char T='T';
+     
+    int cliente = connect_server(servD, "192.168.0.52");
+
+    usleep(100000);
+
+    send_message(i, cliente);
 
 
     return 0;
