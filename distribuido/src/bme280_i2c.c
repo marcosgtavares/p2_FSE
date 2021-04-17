@@ -15,6 +15,8 @@
 
 int fd;
 int time=0;
+struct bme280_dev *dev;
+int fd_bme280;
 
 struct param_adress{
 	float temp;
@@ -96,7 +98,6 @@ int set_i2c_addr_sensor(){
 
 void *req_temp_hum(void *th){
 	struct bme280_data comp_data;
-	struct bme280_dev *dev;
 
 	signal(SIGALRM, timer);
 	signal(SIGINT, end_exec);
@@ -105,7 +106,6 @@ void *req_temp_hum(void *th){
     dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
     dev->delay_us(100, dev->intf_ptr);
-    int fd_bme280;
 	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
 
 	
@@ -122,14 +122,12 @@ void *req_temp_hum(void *th){
 
 void precocious_req(float *temp, float *hum){
 	struct bme280_data comp_data;
-	struct bme280_dev *dev;
 
 	signal(SIGALRM, timer);
 
     dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
     dev->delay_us(100, dev->intf_ptr);
-    int fd_bme280;
 	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
 	rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 	*temp = comp_data.temperature;
