@@ -33,9 +33,11 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void treat_messages(int servidorSocket){
+void treat_messages(void *servidorSocketv){
 	int clienteLength;
 	int socketCliente;
+	int servidorSocket = *((int *)servidorSocketv);
+	
 	struct sockaddr_in clienteAddr;
     while(1) {
 		clienteLength = sizeof(clienteAddr);

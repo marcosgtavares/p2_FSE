@@ -11,11 +11,6 @@
 #include <signal.h>
 
 
-
-char initial[9];
-char final[9];
-char input_initial[6];
-
 float temp, hum;
 
 int only_once_bme=1;
@@ -82,12 +77,16 @@ void *treat_messages(void *servidorSocketv){
 
 void TrataClienteTCP(int socketCliente) {
 	char buffer[16];
+	char initial[9];
+	char input_initial[9];
+
 	int tamanhoRecebido;
 
 	if((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
 		printf("Erro no recv()\n");
 
 	if(buffer[0]=='I'){//Estado inicial
+		kill(getpid(), SIGUSR1);
 		initial_state(input_initial,initial);
 		for(int i=0;i<8;i++){
 			buffer[i]=initial[i];

@@ -8,6 +8,15 @@ int only_once=0;
 
 void sensor_state_atualize(char *current){
 
+    pinMode (6, INPUT);
+    pinMode (25, INPUT);
+    pinMode (21, INPUT);
+    pinMode (22, INPUT);
+    pinMode (26, INPUT);
+    pinMode (27, INPUT); 
+    pinMode (28, INPUT); 
+    pinMode (29, INPUT); 
+
     if(digitalRead(6)==1){//PSAlA
         current[0]='L';
     }
@@ -96,15 +105,6 @@ void on_off_gadgets(char gadget, char on_off){
 void initial_state(char *currentI, char *currentO){
     wiringPiSetup();
 
-    pinMode (6, INPUT);
-    pinMode (25, INPUT);
-    pinMode (21, INPUT);
-    pinMode (22, INPUT);
-    pinMode (26, INPUT);
-    pinMode (27, INPUT); 
-    pinMode (28, INPUT); 
-    pinMode (29, INPUT); 
-
 	sensor_state_atualize(currentO);
 
     pinMode (0, INPUT);
@@ -152,3 +152,4 @@ void initial_state(char *currentI, char *currentO){
 	}
 	
 }
+

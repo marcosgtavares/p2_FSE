@@ -28,16 +28,18 @@ void end_exec(int sigint){
 }
 
 int main(int argc, char *argv[]) {
-    unsigned short serv = atoi(argv[1]);;
+    unsigned short serv = 10122;
     signal(SIGINT, end_exec);
     signal(SIGTSTP, end_exec);
 
-    pthread_t m_tr;
+    pthread_t m_tr,s_change;
 
     servsocket=open_socket(serv);
 
     //treat_messages(servsocket); // thread it
     pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); 
+
+    pthread_create(&s_change, NULL, wsensor_change, NULL);
 
     while(1){
 

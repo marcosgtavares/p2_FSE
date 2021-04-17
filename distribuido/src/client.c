@@ -5,7 +5,16 @@
 #include <string.h>
 #include <unistd.h>
 #include "../inc/client.h"
+#include "../inc/gpio.h"
 
+char initial[9];
+
+int trigger = 0;
+
+void handle_initial(signum){
+	sensor_state_atualize(initial);
+	trigger=1;
+}
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     int clienteSocket;
@@ -44,5 +53,25 @@ void send_message(char *mensagem, int clienteSocket){
 	}
 	close(clienteSocket);
     //close(clienteSocket);
+
+}
+
+void *wsensor_change(){
+	char final[9];
+	int cliente 
+
+	signal(SIGUSR1, handle_initial);
+
+	while(1){
+		if(trigger){
+			usleep(100000);
+			sensor_state_atualize(final);
+			if(!strcmp(initial,final)){
+				initial = final;
+				int cliente = connect_server(10022, "192.168.0.53");
+    			send_message(final, cliente);
+			}
+		}
+	}
 
 }
