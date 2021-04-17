@@ -62,8 +62,8 @@ void treat_messages(int servidorSocket){
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
 
-	signal(SIGINT, end_exec1);
-    signal(SIGTSTP, end_exec1);
+	//signal(SIGINT, end_exec1);
+    //signal(SIGTSTP, end_exec1);
 
 	precocious_req(&temp, &hum);
 

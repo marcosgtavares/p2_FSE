@@ -100,8 +100,8 @@ void *req_temp_hum(void *th){
 	struct bme280_data comp_data;
 
 	signal(SIGALRM, timer);
-	signal(SIGINT, end_exec2);
-    signal(SIGTSTP, end_exec2);
+	//signal(SIGINT, end_exec2);
+    //signal(SIGTSTP, end_exec2);
 
     dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
