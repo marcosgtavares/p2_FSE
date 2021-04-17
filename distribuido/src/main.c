@@ -38,6 +38,8 @@ int main(int argc, char *argv[]) {
 
     //pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); // thread it
 
+    printf("%d", (void *)&servsocket);
+
     treat_messages((void *)&servsocket);
     
     
