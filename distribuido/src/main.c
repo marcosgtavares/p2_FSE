@@ -36,7 +36,13 @@ int main(int argc, char *argv[]) {
 
     servsocket=open_socket(serv);
 
-    treat_messages(servsocket); // thread it
+    //treat_messages(servsocket); // thread it
+    pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); 
+
+    while(1){
+        
+    }
+
 
     
 
