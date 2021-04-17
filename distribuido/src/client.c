@@ -68,7 +68,10 @@ void *wsensor_change(){
 			usleep(100000);
 			sensor_state_atualize(final);
 			if(!strcmp(initial,final)){
-				initial = final;
+				for(int i=0; i<9; i++){
+					initial[i] = final[i];
+				}
+				
 				int cliente = connect_server(10022, "192.168.0.53");
     			send_message(final, cliente);
 			}
