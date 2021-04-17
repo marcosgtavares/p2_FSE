@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include "../inc/client.h"
 #include "../inc/gpio.h"
 
@@ -58,7 +59,7 @@ void send_message(char *mensagem, int clienteSocket){
 
 void *wsensor_change(){
 	char final[9];
-	int cliente 
+	int cliente;
 
 	signal(SIGUSR1, handle_initial);
 
