@@ -71,10 +71,10 @@ void *treat_messages(void *servidorSocketv){
 	pthread_t temp_iterator;
 
 	printf("working");
-	
+
 	th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
-	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
+	//pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
 
 	
 
