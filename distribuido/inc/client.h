@@ -3,5 +3,6 @@
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor);
 void send_message(char *mensagem, int clienteSocket);
+void *wsensor_change();
 
 #endif

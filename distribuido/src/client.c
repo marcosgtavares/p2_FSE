@@ -11,7 +11,7 @@ char initial[9];
 
 int trigger = 0;
 
-void handle_initial(signum){
+void handle_initial(int signum){
 	sensor_state_atualize(initial);
 	trigger=1;
 }
