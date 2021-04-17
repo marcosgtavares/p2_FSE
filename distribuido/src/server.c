@@ -27,6 +27,10 @@ struct param_adress{
 
 struct param_adress *th;
 
+void end_exec(int sigint){
+	free(th);
+    exit(0);
+}
 
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;
@@ -53,10 +57,14 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void treat_messages(int servidorSocket){
+void treat_messages(void *servidorSocketv){
 	int clienteLength;
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
+	int servidorSocket = *((int *)servidorSocketv);
+
+	signal(SIGINT, end_exec);
+    signal(SIGTSTP, end_exec);
 
 	precocious_req(&temp, &hum);
 
@@ -102,18 +110,16 @@ void TrataClienteTCP(int socketCliente) {
 	}
 
 	if(buffer[0]=='T'){
-		if(only_once_bme){
+		if(only_once_bme){//Necessario para sincronia
 			alarm(1);
 			only_once_bme=0;
-			gcvt(temp, 5, buffer);
+			gcvt(temp, 5, buffer);//Transformando em string
 			gcvt(hum, 5, buffer+6);
 		}
 		else{
 			gcvt(th->temp, 5, buffer);
 			gcvt(th->hum, 5, buffer+6);
 		}
-		
-
 		tamanhoRecebido = strlen(buffer);
 	}
 

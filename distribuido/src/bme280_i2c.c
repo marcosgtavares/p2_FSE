@@ -22,8 +22,13 @@ struct param_adress{
 };
 
 void timer(int signum){
-	printf("YAY");
 	time=1;
+}
+
+void end_exec(int sigint){
+	close(fd_bme280);
+	free(dev);
+    exit(0);
 }
 
 void user_delay_ms(uint32_t period, void *intf_ptr){
@@ -94,6 +99,8 @@ void *req_temp_hum(void *th){
 	struct bme280_dev *dev;
 
 	signal(SIGALRM, timer);
+	signal(SIGINT, end_exec);
+    signal(SIGTSTP, end_exec);
 
     dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
@@ -109,8 +116,6 @@ void *req_temp_hum(void *th){
 			rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 			((struct param_adress *)th)->temp = (float)comp_data.temperature;
 			((struct param_adress *)th)->hum = (float)comp_data.humidity;
-
-			printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  ((struct param_adress *)th)->temp, ((struct param_adress *)th)->hum);
 		}
 	}	
 }

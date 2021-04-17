@@ -3,7 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
-#include <wiringPi.h> 
 #include <pthread.h> 
 
 #include "../inc/server.h"
@@ -32,11 +31,12 @@ int main(int argc, char *argv[]) {
     signal(SIGINT, end_exec);
     signal(SIGTSTP, end_exec);
 
+    pthread_t m_tr;
 
 
     servsocket=open_socket(serv);
 
-    treat_messages(servsocket); // thread it
+    pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); // thread it
 
     
 
