@@ -39,7 +39,8 @@ int main(int argc, char *argv[]) {
     pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); // thread it
 
     while(1){
-        
+        sleep(1);
+        printf("1 iter");
     }
     
 
