@@ -41,8 +41,8 @@ int main(int argc, char *argv[]) {
     //printf("%d||%d", *((int *)((void *)&servsocket)), servsocket);
 
     //treat_messages(servsocket);
+    pthread_join(m_tr, NULL);
     
-    while(1){}
 
     return 0;
 }
