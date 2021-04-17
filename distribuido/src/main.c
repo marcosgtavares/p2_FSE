@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
     printf("%d||%d", *((int *)((void *)&servsocket)), servsocket);
 
-    treat_messages((void *)&servsocket);
+    treat_messages(servsocket);
     
     
 

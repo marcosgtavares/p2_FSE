@@ -57,11 +57,10 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void treat_messages(void *servidorSocketv){
+void treat_messages(int servidorSocket){
 	int clienteLength;
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
-	int servidorSocket = *((int *)servidorSocketv);
 
 	signal(SIGINT, end_exec1);
     signal(SIGTSTP, end_exec1);
@@ -74,7 +73,7 @@ void treat_messages(void *servidorSocketv){
 
 	th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
-	//pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
+	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
 
 	
 
