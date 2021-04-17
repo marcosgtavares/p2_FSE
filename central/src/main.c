@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
     char LA1[]="OE1";
     char LA2[]="OF1";
 
-    char I='I';
-    char T='T';
+    char I[]="I";
+    char T[]="T";
      
     int cliente = connect_server(servD, "192.168.0.52");
 
