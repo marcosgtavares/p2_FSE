@@ -74,6 +74,8 @@ void *treat_messages(void *servidorSocketv){
 
 	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
 
+	printf("working");
+
     while(1) {
 		clienteLength = sizeof(clienteAddr);
 		if((socketCliente = accept(servidorSocket, (struct sockaddr *) &clienteAddr, &clienteLength)) < 0)
