@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
     send_message(I, cliente, th);
 
     while(1){
+        sleep(1);
         send_message(T, cliente, th);
         printf("%s",th);
     }
