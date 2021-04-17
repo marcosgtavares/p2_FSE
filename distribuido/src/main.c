@@ -36,12 +36,12 @@ int main(int argc, char *argv[]) {
 
     servsocket=open_socket(serv);
 
-    pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); // thread it
+    //pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); // thread it
 
     //printf("%d||%d", *((int *)((void *)&servsocket)), servsocket);
 
-    //treat_messages(servsocket);
-    pthread_join(m_tr, NULL);
+    treat_messages(servsocket);
+    //pthread_join(m_tr, NULL);
     
 
     return 0;
