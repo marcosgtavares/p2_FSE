@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     signal(SIGINT, end_exec);
     signal(SIGTSTP, end_exec);
 
-
+    pthread_t m_tr;
 
     servsocket=open_socket(serv);
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
     pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); 
 
     while(1){
-        
+
     }
 
 
