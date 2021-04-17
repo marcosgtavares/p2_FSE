@@ -44,7 +44,7 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 		if(buffer[0]=='O'){
 			handle_on_off(buffer);
 		}
-		else if(buffer[0]=='I'){
+		else if(buffer[0]=='L' || buffer[0]=='D'){
 			init_state(buffer);
 		}
 		else{

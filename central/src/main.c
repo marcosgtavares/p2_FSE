@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     pthread_t alarm_watcher;
     pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&servC); 
 
-
+    char *th=(char *)malloc(sizeof(char)*11);
 
     char LL1[]="OA1";
     char LL2[]="OB1";
@@ -28,7 +28,12 @@ int main(int argc, char *argv[]) {
 
     usleep(100000);
 
-    send_message(i, cliente);
+    send_message(I, cliente, th);
+
+    while(1){
+        send_message(T, cliente, th);
+        printf("%s",th);
+    }
 
 
     return 0;
