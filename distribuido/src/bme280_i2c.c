@@ -27,7 +27,7 @@ void timer(int signum){
 	time=1;
 }
 
-void end_exec(int sigint){
+void end_exec2(int sigint){
 	close(fd_bme280);
 	free(dev);
     exit(0);
@@ -100,8 +100,8 @@ void *req_temp_hum(void *th){
 	struct bme280_data comp_data;
 
 	signal(SIGALRM, timer);
-	signal(SIGINT, end_exec);
-    signal(SIGTSTP, end_exec);
+	signal(SIGINT, end_exec2);
+    signal(SIGTSTP, end_exec2);
 
     dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280

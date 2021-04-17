@@ -27,7 +27,7 @@ struct param_adress{
 
 struct param_adress *th;
 
-void end_exec(int sigint){
+void end_exec1(int sigint){
 	free(th);
     exit(0);
 }
@@ -63,8 +63,8 @@ void *treat_messages(void *servidorSocketv){
 	struct sockaddr_in clienteAddr;
 	int servidorSocket = *((int *)servidorSocketv);
 
-	signal(SIGINT, end_exec);
-    signal(SIGTSTP, end_exec);
+	signal(SIGINT, end_exec1);
+    signal(SIGTSTP, end_exec1);
 
 	precocious_req(&temp, &hum);
 
