@@ -61,10 +61,10 @@ void *wsensor_change(){
 
 	int cliente;
 
-	signal(SIGUSR1, handle_initial);
+	//signal(SIGUSR1, handle_initial);
 
 	while(1){
-		if(trigger){
+		//if(trigger){
 			sensor_state_atualize(finals);
 			for(int i=0;i<8;i++){
 				if(finals[i]!='D'){
@@ -82,6 +82,6 @@ void *wsensor_change(){
 		}
 		usleep(1000000);
 			printf("asd");
-	}
+	//}
 
 }
