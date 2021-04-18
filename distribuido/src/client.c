@@ -74,7 +74,7 @@ void *wsensor_change(){
 					send_message(finals, cliente);
 
 					usleep(100000);
-					break;
+					i=8;
 				}
 			}
 				
