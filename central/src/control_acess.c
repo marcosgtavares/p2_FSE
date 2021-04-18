@@ -24,7 +24,7 @@ void init_state(char *in_state){
 
 void handle_change_s(char *sensor_state){
     FILE *fp;
-
+printf("head");
     char states[16];
     fp=fopen("../controler.txt", "r");
     if(fgetc(fp)=='L'){
@@ -41,6 +41,7 @@ void handle_change_s(char *sensor_state){
     fp=fopen("../controler.txt", "w");
 
     fprintf(fp, states);
+    printf("tail");
 }
 
 void handle_on_off(char *on_off){
