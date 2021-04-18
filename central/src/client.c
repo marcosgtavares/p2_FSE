@@ -46,7 +46,7 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 	}	
 	buffer[totalBytesRecebidos] = '\0';
 
-	for(int i=0;i<tamanhoMensagem;i++){
+	for(int i=0;i<totalBytesRecebidos;i++){
 		t_h[i]=buffer[i];
 	}
 	if(buffer[0]=='O'){
