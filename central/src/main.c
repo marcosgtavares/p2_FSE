@@ -12,7 +12,7 @@ int sockets;
 char *th;
 
 void end_exec(int sigint){
-    close(socket);
+    close(sockets);
     free(th);
     exit(0);
 }
