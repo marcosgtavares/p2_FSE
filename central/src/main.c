@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
     usleep(100000);
 
-   // send_message(I, cliente, th);
+    send_message(I, cliente, th);
 
     while(1){
         sleep(1);
