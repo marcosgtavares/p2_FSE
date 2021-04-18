@@ -1,8 +1,15 @@
-#include <stdlib.h>
+/*#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <pthread.h> 
+*/
+#include <stdio.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 //#include <signal.h>
 
 //#include "../inc/server.h"
@@ -46,8 +53,26 @@ int main(int argc, char *argv[]) {
     char T[]="T";  */
 
     int cliente;
+struct sockaddr_in servidorAddr;
+    //cliente = connect_server(servD, "192.168.0.52");
 
-    cliente = connect_server(servD, "192.168.0.52");
+    
+
+    if((cliente = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
+		printf("Erro no socket()\n");
+
+	// Construir struct sockaddr_in
+	memset(&servidorAddr, 0, sizeof(servidorAddr)); // Zerando a estrutura de dados
+	servidorAddr.sin_family = AF_INET;
+	servidorAddr.sin_addr.s_addr = inet_addr(IP_Servidor);
+	servidorAddr.sin_port = htons(servidorPorta);
+
+	// Connect
+	if(connect(cliente, (struct sockaddr *) &servidorAddr, 
+							sizeof(servidorAddr)) < 0)
+		printf("Erro no connect()\n");
+
+
 
     //usleep(100000);
 
