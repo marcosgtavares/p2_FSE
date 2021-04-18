@@ -36,7 +36,7 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
     if(send(clienteSocket, mensagem, tamanhoMensagem, 0) != tamanhoMensagem)
 		printf("Erro no envio: numero de bytes enviados diferente do esperado\n");
 
-	if(message="T" && once_dt==1){
+	if(mensagem=="T" && once_dt==1){
 		once_dt=0;
 		usleep(10000);
 	}
