@@ -49,6 +49,7 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 	for(int i=0;i<totalBytesRecebidos;i++){
 		t_h[i]=buffer[i];
 	}
+	t_h[totalBytesRecebidos] = '\0';
 	if(buffer[0]=='O'){
 		handle_on_off(t_h);
 	}

@@ -5,7 +5,6 @@
 #include "../inc/control_acess.h"
 
 void init_state(char *in_state){
-    printf("head");
     char states[16];
     FILE *fp;
 
@@ -14,7 +13,6 @@ void init_state(char *in_state){
 
     fgets(states, 16, fp);
     fclose(fp);
-    printf("midle");
     for(int i=0; i<14; i++){
         states[i+1]=in_state[i];
     }
@@ -22,7 +20,6 @@ void init_state(char *in_state){
     fp=fopen("../controler", "w");
 
     fprintf(fp, states);
-    printf("tail");
     fclose(fp);
 }
 

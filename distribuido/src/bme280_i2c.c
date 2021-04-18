@@ -104,11 +104,11 @@ void *req_temp_hum(void *th){
 	signal(SIGINT, end_execB);
     signal(SIGTSTP, end_execB);
 
-    dev = init_sensor();
+    /*dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
     dev->delay_us(100, dev->intf_ptr);
     int fd_bme280;
-	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
+	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280*/
 
 	
     while(1){
@@ -137,6 +137,5 @@ void precocious_req(float *temp, float *hum){
 	rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 	*temp = comp_data.temperature;
 	*hum = comp_data.humidity;
-	close(fd_bme280);
-	free(dev);
+	
 }
