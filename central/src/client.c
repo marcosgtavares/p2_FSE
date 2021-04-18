@@ -32,7 +32,6 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
     int tamanhoMensagem = strlen(mensagem);
     int totalBytesRecebidos;
     int bytesRecebidos;
-	int iter=0;
 
     if(send(clienteSocket, mensagem, tamanhoMensagem, 0) != tamanhoMensagem)
 		printf("Erro no envio: numero de bytes enviados diferente do esperado\n");
@@ -42,18 +41,11 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 		usleep(10000);
 	}
 	totalBytesRecebidos = 0;
-	while(totalBytesRecebidos < tamanhoMensagem) {
-		if((bytesRecebidos = recv(clienteSocket, buffer, 16-1, 0)) <= 0)
-			if(iter==10){
-				iter++;
-				break;
-			}
-			printf("Não recebeu o total de bytes enviados\n");
-		totalBytesRecebidos += bytesRecebidos;
-		buffer[bytesRecebidos] = '\0';
-		
-		
-	}
+	if((bytesRecebidos = recv(clienteSocket, buffer, 16-1, 0)) <= 0){
+		printf("Não recebeu o total de bytes enviados\n");
+	}	
+	buffer[totalBytesRecebidos] = '\0';
+
 	for(int i=0;i<tamanhoMensagem;i++){
 		t_h[i]=buffer[i];
 	}
