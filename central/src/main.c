@@ -9,11 +9,13 @@
 #include "../inc/client.h"
 
 int socket;
+char *th;
 
-/*void end_exec(int sigint){
+void end_exec(int sigint){
     close(socket);
+    free(th);
     exit(0);
-}*/
+}
 
 int main(int argc, char *argv[]) {
     //signal(SIGINT, end_exec);
@@ -28,7 +30,7 @@ int main(int argc, char *argv[]) {
     //pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&socket); 
     printf("ASDA");
 
-    char *th=(char *)malloc(sizeof(char)*16);
+    th=(char *)malloc(sizeof(char)*16);
 
     printf("ASDAasd");
 
@@ -42,7 +44,11 @@ int main(int argc, char *argv[]) {
     char I[]="I";
     char T[]="T";
 
-    char ip[]= "192.168.0.52";
+    char *ip=th=(char *)malloc(sizeof(char)*14);
+    char ip2[]="192.168.0.52";
+    for(int i=0; i<14; i++){
+        ip[i]=ip2[i];
+    }
 
     int cliente = connect_server(servD, ip);
 
