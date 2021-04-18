@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <signal.h>
 
 #include "../inc/client.h"
 #include "../inc/gpio.h"
@@ -13,9 +12,6 @@
 int trigger = 0;
 int once = 1 ;
 
-void handle_initial(int signum){
-	trigger=1;
-}
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     int clienteSockets;
@@ -61,26 +57,24 @@ void *wsensor_change(){
 
 	int cliente;
 
-	signal(SIGUSR1, handle_initial);
+	usleep(2000000);
 
 	while(1){
-		if(trigger){
-			sensor_state_atualize(finals);
-			for(int i=0;i<8;i++){
-				if(finals[i]!='D'){
-				
-					cliente = connect_server(10022, "192.168.0.53");
+		
+		sensor_state_atualize(finals);
+		for(int i=0;i<8;i++){
+			if(finals[i]!='D'){
+			
+				cliente = connect_server(10022, "192.168.0.53");
 					
-					send_message(finals, cliente);
+				send_message(finals, cliente);
 
-					usleep(100000);
-					break;
-				}
+				usleep(100000);
+				break;
 			}
-				
-			usleep(1000000);
-			printf("asd");
 		}
+		usleep(100000);		
+		printf("asd");
 	}
 
 }
