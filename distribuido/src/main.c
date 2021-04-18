@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     //treat_messages(servsocket); // thread it
     pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); 
 
-    pthread_create(&s_change, NULL, wsensor_change, NULL);
+    //pthread_create(&s_change, NULL, wsensor_change, NULL);
 
     while(1){
 
