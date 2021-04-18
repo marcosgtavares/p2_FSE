@@ -3,11 +3,12 @@
 #include <string.h>
 #include <unistd.h>
 #include <pthread.h> 
+#include <signal.h>
 
 #include "../inc/server.h"
 #include "../inc/client.h"
 
-int socket
+int socket;
 
 void end_exec(int sigint){
     close(socket);
