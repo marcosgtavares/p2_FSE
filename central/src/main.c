@@ -44,7 +44,9 @@ int main(int argc, char *argv[]) {
     char I[]="I";
     char T[]="T";  
 
-    //int cliente = connect_server(servD, "192.168.0.52");
+    int cliente;
+
+    cliente = connect_server(servD, "192.168.0.52");
 
     usleep(100000);
 
@@ -52,7 +54,7 @@ int main(int argc, char *argv[]) {
 
     while(1){
         sleep(1);
-        //send_message(T, cliente, th);
+        send_message(T, cliente, th);
         printf("%s\n",th);
     }
 
