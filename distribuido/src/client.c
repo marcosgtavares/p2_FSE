@@ -62,6 +62,7 @@ void *wsensor_change(){
 	int cliente;
 
 	//signal(SIGUSR1, handle_initial);
+		usleep(3000000);
 
 	while(1){
 		//if(trigger){
