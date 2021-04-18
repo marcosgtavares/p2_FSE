@@ -44,11 +44,8 @@ int main(int argc, char *argv[]) {
     char I[]="I";
     char T[]="T";
 
-    char *ip=(char *)malloc(sizeof(char)*14);
-    char ip2[]="192.168.0.52";
-    for(int i=0; i<14; i++){
-        ip[i]=ip2[i];
-    }
+    char *ip= argv[1];
+
 
     int cliente = connect_server(servD, ip);
 
