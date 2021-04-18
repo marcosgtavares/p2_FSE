@@ -27,7 +27,7 @@ void handle_change_s(char *sensor_state){
 
     char states[16];
     fp=fopen("../controler.txt", "r");
-    if(fgetc(fp)=="L"){
+    if(fgetc(fp)=='L'){
         //LIGA ALARME;
     }
     fp=fopen("../controler.txt", "r");
