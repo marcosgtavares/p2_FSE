@@ -68,7 +68,7 @@ void *wsensor_change(){
 			if(monitor_state()){
 				sensor_state_atualize(finals);
 				cliente = connect_server(10022, "192.168.0.53");
-        		send_message(finals, cliente, th);
+        		send_message(finals, cliente);
 				usleep(100000);
 			}
 		}
