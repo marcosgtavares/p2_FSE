@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
 
     while(1){
         sleep(1);
+        cliente = connect_server(servD, "192.168.0.52");
         send_message(T, cliente, th);
         printf("%s\n",th);
     }
