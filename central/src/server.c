@@ -8,7 +8,7 @@
 #include "../inc/alarm_controler.h"
 
 struct sckt_sstate{
-    int socket;
+    int sockets;
     char sstates[9];
 };
 
@@ -40,7 +40,7 @@ int open_socket(unsigned short servidorPorta){
 void *treat_messages(void *alarm_p){
 	int clienteLength;
 	int socketCliente;
-	int servidorSocket = ((struct sckt_sstate *)alarm_p)->socket;
+	int servidorSocket = ((struct sckt_sstate *)alarm_p)->sockets;
 
 	struct sockaddr_in clienteAddr;
     while(1) {

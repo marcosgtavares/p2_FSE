@@ -77,7 +77,7 @@ void *wsensor_change(){
 				}
 				cliente = connect_server(10022, "192.168.0.53");
 				send_message(finals, cliente);
-				usleep(100000);
+				usleep(1000000);
 			}
 		}
 	}
