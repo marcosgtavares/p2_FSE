@@ -78,7 +78,8 @@ void *wsensor_change(){
 				}
 			}
 				
-			usleep(100000);
+			usleep(1000000);
+			printf("asd");
 		}
 	}
 
