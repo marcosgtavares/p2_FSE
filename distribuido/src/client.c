@@ -65,21 +65,21 @@ void *wsensor_change(){
 
 	while(1){
 		if(trigger){
-			trigger=1;
-			sensor_state_atualize(finals);
-			for(i=0;i<8;i++){
-				if(finals[i]!='D'){
-				
-					cliente = connect_server(10022, "192.168.0.53");
+			while(1){
+				sensor_state_atualize(finals);
+				for(i=0;i<8;i++){
+					if(finals[i]!='D'){
 					
-					send_message(finals, cliente);
+						cliente = connect_server(10022, "192.168.0.53");
+						
+						send_message(finals, cliente);
 
-					usleep(100000);
-					i=8;
+						usleep(100000);
+						i=8;
+					}
 				}
 			}
-				
-			
+			trigger=1;
 		}
 	}
 
