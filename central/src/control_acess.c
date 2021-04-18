@@ -121,5 +121,4 @@ void handle_on_off(char *on_off){
             fprintf(fp, states);
             break;
     }
-    fclose(fp);
 }
