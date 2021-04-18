@@ -78,7 +78,7 @@ void *wsensor_change(){
 				}
 			}
 				
-			
+			usleep(100000);
 		}
 	}
 
