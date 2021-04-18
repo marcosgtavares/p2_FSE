@@ -7,7 +7,7 @@
 int only_once=0;
 
 void sensor_state_atualize(char *current){
-
+    wiringPiSetup();
     pinMode (6, INPUT);
     pinMode (25, INPUT);
     pinMode (21, INPUT);
