@@ -41,18 +41,16 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 			printf("Não recebeu o total de bytes enviados\n");
 		totalBytesRecebidos += bytesRecebidos;
 		buffer[bytesRecebidos] = '\0';
+		for(int i=0;i<tamanhoMensagem;i++){
+				t_h[i]=buffer[i];
+		}
 		if(buffer[0]=='O'){
-			handle_on_off(buffer);
+			handle_on_off(t_h);
 		}
 		else if(buffer[0]=='L' || buffer[0]=='D'){
-			init_state(buffer);
+			init_state(t_h);
 		}
-		else{
-			for(int i=0;i<tamanhoMensagem;i++){
-				t_h[i]=buffer[i];
-			}
-			
-		}
+		
 	}
 	close(clienteSocket);
     //close(clienteSocket);
