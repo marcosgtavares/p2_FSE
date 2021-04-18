@@ -10,7 +10,7 @@ void init_state(char *in_state){
     FILE *fp;
 
 
-    fp=fopen("../controler", "r");
+    fp=fopen("../controler", "w+");
 
     fgets(states, 16, fp);
     fclose(fp);
@@ -29,12 +29,12 @@ void init_state(char *in_state){
 void handle_change_s(char *sensor_state){
     FILE *fp;
     char states[16];
-    fp=fopen("../controler", "r");
+    fp=fopen("../controler", "w+");
     if(fgetc(fp)=='L'){
         //LIGA ALARME;
     }
     fclose(fp);
-    fp=fopen("../controler", "r");
+    fp=fopen("../controler", "w+");
 
     fgets(states, 16, fp);
 
@@ -62,7 +62,7 @@ void handle_on_off(char *on_off){
 
     switch(on_off[2]){
         case 'A'://L1
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
@@ -72,7 +72,7 @@ void handle_on_off(char *on_off){
 
             break;
         case 'B'://L2
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
@@ -81,7 +81,7 @@ void handle_on_off(char *on_off){
             fprintf(fp, states);
             break;
         case 'C'://L3
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
@@ -90,7 +90,7 @@ void handle_on_off(char *on_off){
             fprintf(fp, states);
             break;
         case 'D'://L4
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
@@ -99,7 +99,7 @@ void handle_on_off(char *on_off){
             fprintf(fp, states);
             break;
         case 'E'://A1
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
@@ -108,7 +108,7 @@ void handle_on_off(char *on_off){
             fprintf(fp, states);
             break;
         case 'F'://A2
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
@@ -117,7 +117,7 @@ void handle_on_off(char *on_off){
             fprintf(fp, states);
             break;
         case 'G'://Alarm
-            fp=fopen("../controler", "r");
+            fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
             fclose(fp);
