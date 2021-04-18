@@ -11,11 +11,11 @@
 int socket;
 char *th;
 
-void end_exec(int sigint){
+/*void end_exec(int sigint){
     close(socket);
     free(th);
     exit(0);
-}
+}*/
 
 int main(int argc, char *argv[]) {
     //signal(SIGINT, end_exec);
