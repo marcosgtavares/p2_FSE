@@ -70,11 +70,9 @@ void *wsensor_change(){
 			sensor_state_atualize(final);
 			if(strcmp(initial,final)!=0){
 				
-				if(once){
-					once = 0;
-					int cliente = connect_server(10022, "192.168.0.53");
-					usleep(10000);
-				}
+				
+				cliente = connect_server(10022, "192.168.0.53");
+				
     			send_message(final, cliente);
 			}
 		}
