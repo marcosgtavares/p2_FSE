@@ -61,7 +61,7 @@ void *wsensor_change(){
 
 	int cliente;
 	int i=0;
-	signal(SIGUSR1, handle_initial);
+	signal(SIGALRM, handle_initial);
 
 	while(1){
 		if(trigger){
@@ -75,6 +75,8 @@ void *wsensor_change(){
 						send_message(finals, cliente);
 
 						usleep(100000);
+
+						break;
 					}
 				}
 			}

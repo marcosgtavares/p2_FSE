@@ -87,7 +87,7 @@ void TrataClienteTCP(int socketCliente) {
 
 	if(buffer[0]=='I'){//Estado inicial
 		initial_state(input_initial,initial);
-		kill(getpid(), SIGUSR1);
+		//kill(getpid(), SIGUSR1);
 		
 		for(int i=0;i<8;i++){
 			buffer[i]=input_initial[i];
