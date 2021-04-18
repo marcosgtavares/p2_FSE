@@ -42,13 +42,13 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 		totalBytesRecebidos += bytesRecebidos;
 		buffer[bytesRecebidos] = '\0';
 		for(int i=0;i<tamanhoMensagem;i++){
-				//st_h[i]=buffer[i];
+			st_h[i]=buffer[i];
 		}
 		if(buffer[0]=='O'){
 			handle_on_off(t_h);
 		}
 		else if(buffer[0]=='L' || buffer[0]=='D'){
-			//init_state(t_h);
+			init_state(t_h);
 		}
 		
 	}
