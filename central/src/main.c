@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     unsigned short servC = 10022;
 
     pthread_t alarm_watcher;
-    int socket = open_socket(servC);
+    //int socket = open_socket(servC);
 
     //pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&socket); 
 
