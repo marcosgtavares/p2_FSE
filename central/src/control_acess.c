@@ -5,6 +5,7 @@
 #include "../inc/control_acess.h"
 
 void init_state(char *in_state){
+    printf("head");
     char states[16];
     FILE *fp;
 
@@ -12,7 +13,7 @@ void init_state(char *in_state){
     fp=fopen("../controler.txt", "r");
 
     fgets(states, 16, fp);
-
+    printf("midle");
     for(int i=0; i<14; i++){
         states[i+1]=in_state[i];
     }
@@ -20,11 +21,11 @@ void init_state(char *in_state){
     fp=fopen("../controler.txt", "w");
 
     fprintf(fp, states);
+    printf("tail");
 }
 
 void handle_change_s(char *sensor_state){
     FILE *fp;
-printf("head");
     char states[16];
     fp=fopen("../controler.txt", "r");
     if(fgetc(fp)=='L'){
@@ -41,7 +42,6 @@ printf("head");
     fp=fopen("../controler.txt", "w");
 
     fprintf(fp, states);
-    printf("tail");
 }
 
 void handle_on_off(char *on_off){

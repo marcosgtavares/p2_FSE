@@ -48,7 +48,10 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 			init_state(buffer);
 		}
 		else{
-			t_h=buffer;
+			for(int i=0;i<tamanhoMensagem;i++){
+				t_h[i]=buffer[i];
+			}
+			
 		}
 	}
 	close(clienteSocket);
