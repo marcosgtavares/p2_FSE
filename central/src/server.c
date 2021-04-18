@@ -67,7 +67,7 @@ void TrataClienteTCP(int socketCliente, char *sen_states) {
 			sen_states[i]=buffer[i];
 		}
 		sen_states[8]='\0';
-		//handle_change_s(sen_states);
+		handle_change_s(sen_states);
 	}
 
 	if(send(socketCliente, buffer, tamanhoRecebido, 0) != tamanhoRecebido)
