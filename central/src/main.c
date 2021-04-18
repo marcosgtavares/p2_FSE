@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     //pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&socket); 
     printf("ASDA");
 
-    th=(char *)malloc(sizeof(char)*16);
+    //th=(char *)malloc(sizeof(char)*16);
 
     printf("ASDAasd");
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 
     while(1){
         sleep(1);
-        send_message(T, cliente, th);
+        //send_message(T, cliente, th);
         printf("%s\n",th);
     }
 
