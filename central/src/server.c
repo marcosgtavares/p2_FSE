@@ -7,7 +7,10 @@
 #include "../inc/server.h"
 #include "../inc/control_acess.h"
 
-
+struct sckt_sstate{
+    int socket;
+    char sstates[9];
+}
 
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;
@@ -34,10 +37,10 @@ int open_socket(unsigned short servidorPorta){
 
 }
 
-void *treat_messages(void *servidorSocketv){
+void *treat_messages(void *alarm_p){
 	int clienteLength;
 	int socketCliente;
-	int servidorSocket = *((int *)servidorSocketv);
+	int servidorSocket = ((struct sckt_sstate *)alarm_p)->socket;
 
 	struct sockaddr_in clienteAddr;
     while(1) {
@@ -47,12 +50,12 @@ void *treat_messages(void *servidorSocketv){
 		
 		printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
 		
-		TrataClienteTCP(socketCliente);
+		TrataClienteTCP(socketCliente, ((struct sckt_sstate *)alarm_p)->sstates);
         close(socketCliente);
 	}
 }
 
-void TrataClienteTCP(int socketCliente) {
+void TrataClienteTCP(int socketCliente, char *sen_states) {
 	char buffer[16];
 	int tamanhoRecebido;
 
@@ -60,11 +63,14 @@ void TrataClienteTCP(int socketCliente) {
 		printf("Erro no recv()\n");
 	}
 	else{
-		//handle_change_s(buffer);
+		for(int i=0;i<8;i++){
+			sen_states[i]=buffer[i];
+		}
+		sen_states[8]='\0';
+		handle_change_s(sen_states);
 	}
 
 	if(send(socketCliente, buffer, tamanhoRecebido, 0) != tamanhoRecebido)
 		printf("Erro no envio - send()\n");
-	printf("S%sS",buffer);
 		
 }

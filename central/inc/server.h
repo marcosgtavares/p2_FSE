@@ -2,7 +2,7 @@
 #define SERVER_H_
 
 int open_socket(unsigned short servidorPorta);
-void *treat_messages(void *servidorSocketv);
-void TrataClienteTCP(int socketCliente);
+void *treat_messages(void *alarm_p);
+void TrataClienteTCP(int socketCliente, char *sen_states);
 
 #endif

@@ -12,9 +12,13 @@
 
 int trigger = 0;
 int once = 1 ;
+char initials[9];
 
 void handle_initial(int signum){
 	trigger=1;
+	sensor_state_atualize(initials);
+	
+
 }
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
@@ -58,17 +62,21 @@ void send_message(char *mensagem, int clienteSocket){
 
 void *wsensor_change(){
 	char finals[9];
-
+	char initials[9];
 	int cliente;
 	int i=0;
 	signal(SIGUSR1, handle_initial);
 
 	while(1){
 		if(trigger){
-			if(monitor_state()){
-				sensor_state_atualize(finals);
+			sensor_state_atualize(finals);
+			
+			if(strcmp(initials,finals)!=0){
+				for(int i=0;i<8;i++){
+					initials[i]=finals[i];
+				}
 				cliente = connect_server(10022, "192.168.0.53");
-        		send_message(finals, cliente);
+				send_message(finals, cliente);
 				usleep(100000);
 			}
 		}

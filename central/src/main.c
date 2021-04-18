@@ -11,6 +11,11 @@
 int sockets;
 char *th;
 
+struct sckt_sstate{
+    int socket;
+    char sstates[9];
+}
+
 void end_exec(int sigint){
     close(sockets);
     free(th);
@@ -27,7 +32,9 @@ int main(int argc, char *argv[]) {
     pthread_t alarm_watcher;
     int sockets = open_socket(servC);
 
-    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&sockets); 
+    struct sckt_sstate alarm_params = (struct sckt_sstate *)malloc(sizeof(struct sckt_sstate));
+
+    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&alarm_params); 
 
     th=(char *)malloc(sizeof(char)*16);
 
