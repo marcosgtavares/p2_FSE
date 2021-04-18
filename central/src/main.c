@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
         ip[i]=ip2[i];
     }
 
-    int cliente = connect_server(servD, ip);
+    //int cliente = connect_server(servD, ip);
 
     usleep(100000);
 
