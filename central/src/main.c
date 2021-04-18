@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 
     printf("ASDAasd");
 
+/*
     char LL1[]="OA1";
     char LL2[]="OB1";
     char LL3[]="OC1";
@@ -42,7 +43,7 @@ int main(int argc, char *argv[]) {
     char LA2[]="OF1";
 
     char I[]="I";
-    char T[]="T";  
+    char T[]="T";  */
 
     int cliente;
 
