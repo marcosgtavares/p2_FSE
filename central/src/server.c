@@ -60,7 +60,7 @@ void TrataClienteTCP(int socketCliente) {
 		printf("Erro no recv()\n");
 	}
 	else{
-		//handle_change_s(buffer);
+		handle_change_s(buffer);
 	}
 
 	while (tamanhoRecebido > 0) {
