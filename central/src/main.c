@@ -14,7 +14,7 @@ char *th;
 struct sckt_sstate{
     int socket;
     char sstates[9];
-}
+};
 
 void end_exec(int sigint){
     close(sockets);

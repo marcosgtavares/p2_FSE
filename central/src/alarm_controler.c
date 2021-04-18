@@ -6,6 +6,7 @@
 
 int alarm_dl=0;
 int sum_s=0;
+int sum_s2=0;
 
 void handle_change_s(char *sensor_state){
     
