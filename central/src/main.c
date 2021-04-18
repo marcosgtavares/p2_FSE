@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     //pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&socket); 
     printf("ASDA");
 
-    char *th=(char *)malloc(sizeof(char)*16);
+    //char *th=(char *)malloc(sizeof(char)*16);
 
     printf("ASDAasd");
 
