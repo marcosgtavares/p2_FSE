@@ -5,6 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
+
 #include "../inc/client.h"
 #include "../inc/gpio.h"
 
@@ -68,7 +69,7 @@ void *wsensor_change(){
 		if(trigger){
 			usleep(100000);
 			sensor_state_atualize(final);
-			if(!strcmp(initial,final)){
+			if(strcmp(initial,final)!=0){
 				for(int i=0; i<9; i++){
 					initial[i] = final[i];
 				}
