@@ -5,12 +5,19 @@
 #include "../inc/gpio.h"
 
 int only_once=0;
-
+int only_once2=1;
 int switchonoff=0;
 
 void sensor_state_atualize(char *current){
     if(only_once==0){
         wiringPiSetup();
+        
+
+        only_once=1;
+    }
+    
+    if(only_once2){
+        only_once2=0;
         pinMode (6, INPUT);
         pinMode (25, INPUT);
         pinMode (21, INPUT);
@@ -19,10 +26,8 @@ void sensor_state_atualize(char *current){
         pinMode (27, INPUT); 
         pinMode (28, INPUT); 
         pinMode (29, INPUT); 
-
-        only_once=1;
     }
-    
+
     if(digitalRead(6)==1){//PSAlA
         current[0]='L';
     }
