@@ -86,8 +86,9 @@ void TrataClienteTCP(int socketCliente) {
 		printf("Erro no recv()\n");
 
 	if(buffer[0]=='I'){//Estado inicial
-		kill(getpid(), SIGUSR1);
 		initial_state(input_initial,initial);
+		kill(getpid(), SIGUSR1);
+		
 		for(int i=0;i<8;i++){
 			buffer[i]=input_initial[i];
 		}
