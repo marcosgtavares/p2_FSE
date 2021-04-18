@@ -66,7 +66,7 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
+            
             states[9]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
@@ -76,7 +76,6 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
             states[10]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
@@ -85,7 +84,6 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
             states[11]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
@@ -94,7 +92,6 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
             states[12]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
@@ -103,7 +100,6 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
             states[13]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
@@ -112,7 +108,6 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
             states[14]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
@@ -121,7 +116,6 @@ void handle_on_off(char *on_off){
             fp=fopen("../controler", "w+");
 
             fgets(states, 16, fp);
-            fclose(fp);
             states[0]==on_off[3];
             fp=fopen("../controler", "w");
             fprintf(fp, states);
