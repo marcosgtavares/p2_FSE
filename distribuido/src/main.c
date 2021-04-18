@@ -26,11 +26,15 @@ void end_exec(int sigint){
     close(servsocket);
     exit(0);
 }
+void ur(int sigint){
+    
+}
 
 int main(int argc, char *argv[]) {
     unsigned short serv = 10122;
     signal(SIGINT, end_exec);
     signal(SIGTSTP, end_exec);
+    signal(SIGUSR1, ur);
 
     pthread_t m_tr,s_change;
 
