@@ -58,7 +58,7 @@ void send_message(char *mensagem, int clienteSocket){
 
 void *wsensor_change(){
 	char final[9];
-	char initial[9]={'D','D','D','D','D','D','D','D','\0'};
+	char initial[9]="DDDDDDDD";
 
 	int cliente;
 
@@ -69,14 +69,11 @@ void *wsensor_change(){
 			
 			sensor_state_atualize(final);
 			if(strcmp(initial,final)!=0){
-				for(int i=0; i<9; i++){
-					initial[i] = final[i];
-				}
 				
 				if(once){
 					once = 0;
 					int cliente = connect_server(10022, "192.168.0.53");
-					usleep(1000000);
+					usleep(10000);
 				}
     			send_message(final, cliente);
 			}
