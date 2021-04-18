@@ -65,7 +65,7 @@ void *wsensor_change(){
 
 	while(1){
 		if(trigger){
-			
+			printf("s");
 			sensor_state_atualize(finals);
 			for(int i=0;i<8;i++){
 				if(finals[i]!='D'){
