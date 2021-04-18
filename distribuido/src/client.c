@@ -61,7 +61,7 @@ void *wsensor_change(){
 
 	int cliente;
 	int i=0;
-	signal(SIGALRM, handle_initial);
+	signal(SIGUSR1, handle_initial);
 
 	while(1){
 		if(trigger){
@@ -78,6 +78,7 @@ void *wsensor_change(){
 
 						break;
 					}
+					printf("UGH");
 				}
 			}
 			trigger=1;
