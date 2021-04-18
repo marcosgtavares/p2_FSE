@@ -118,7 +118,7 @@ void on_off_gadgets(char gadget, char on_off){
     }
 }
 
-void initial_state(char *currentI, char *currentO){
+void initial_state(char *currentO, char *currentI){
     if(only_once==0){
         wiringPiSetup();
         only_once=1;
