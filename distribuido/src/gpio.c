@@ -179,3 +179,15 @@ void initial_state(char *currentO, char *currentI){
 	
 }
 
+int monitor_state(){
+    char sensors[9];
+
+    sensor_state_atualize(sensors);
+
+    for(int i = 0; i<8; i++){
+        if(sensors[i]=='L'){
+            return 1;
+        }
+    }
+    return 0;
+}

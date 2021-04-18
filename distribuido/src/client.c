@@ -65,24 +65,12 @@ void *wsensor_change(){
 
 	while(1){
 		if(trigger){
-			while(1){
+			if(monitor_state()){
 				sensor_state_atualize(finals);
-				for(i=0;i<8;i++){
-					if(finals[i]!='D'){
-					
-						cliente = connect_server(10022, "192.168.0.53");
-						
-						send_message(finals, cliente);
-
-						usleep(10000);
-
-						break;
-					}
-				
-				}
-					printf("UGH1");
+				cliente = connect_server(10022, "192.168.0.53");
+        		send_message(finals, cliente, th);
+				usleep(100000);
 			}
-			trigger=1;
 		}
 	}
 
