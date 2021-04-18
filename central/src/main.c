@@ -26,8 +26,11 @@ int main(int argc, char *argv[]) {
     //int socket = open_socket(servC);
 
     //pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&socket); 
+    printf("ASDA");
 
     char *th=(char *)malloc(sizeof(char)*16);
+
+    printf("ASDAasd");
 
     char LL1[]="OA1";
     char LL2[]="OB1";
