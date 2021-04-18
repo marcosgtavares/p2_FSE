@@ -10,7 +10,7 @@
 struct sckt_sstate{
     int socket;
     char sstates[9];
-}
+};
 
 int open_socket(unsigned short servidorPorta){
 	int servidorSocket;

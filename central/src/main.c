@@ -32,9 +32,9 @@ int main(int argc, char *argv[]) {
     pthread_t alarm_watcher;
     int sockets = open_socket(servC);
 
-    struct sckt_sstate alarm_params = (struct sckt_sstate *)malloc(sizeof(struct sckt_sstate));
+    struct sckt_sstate *alarm_params = (struct sckt_sstate *)malloc(sizeof(struct sckt_sstate));
 
-    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&alarm_params); 
+    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
 
     th=(char *)malloc(sizeof(char)*16);
 
