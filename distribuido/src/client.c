@@ -11,6 +11,7 @@
 char initial[9];
 
 int trigger = 0;
+int once = 1 ;
 
 void handle_initial(int signum){
 	sensor_state_atualize(initial);
@@ -72,7 +73,10 @@ void *wsensor_change(){
 					initial[i] = final[i];
 				}
 				
-				int cliente = connect_server(10022, "192.168.0.53");
+				if(once){
+					once = 0;
+					int cliente = connect_server(10022, "192.168.0.53");
+				}
     			send_message(final, cliente);
 			}
 		}

@@ -42,12 +42,9 @@ int main(int argc, char *argv[]) {
     char LA2[]="OF1";
 
     char I[]="I";
-    char T[]="T";
+    char T[]="T";  
 
-    char *ip= argv[1];
-
-
-    int cliente = connect_server(servD, ip);
+    int cliente = connect_server(servD, "192.168.0.52");
 
     usleep(100000);
 
