@@ -89,10 +89,10 @@ void TrataClienteTCP(int socketCliente) {
 		kill(getpid(), SIGUSR1);
 		initial_state(input_initial,initial);
 		for(int i=0;i<8;i++){
-			buffer[i]=initial[i];
+			buffer[i]=input_initial[i];
 		}
 		for(int i=8;i<14;i++){
-			buffer[i]=input_initial[i-8];
+			buffer[i]=initial[[i-8];
 		}
 		buffer[14]='\0';
 		tamanhoRecebido = strlen(buffer);
