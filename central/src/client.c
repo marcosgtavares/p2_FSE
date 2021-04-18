@@ -5,7 +5,6 @@
 #include <string.h>
 #include <unistd.h>
 #include "../inc/client.h"
-#include "../inc/control_acess.h"
 
 int once_dt=1;
 

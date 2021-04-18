@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "../inc/server.h"
-#include "../inc/control_acess.h"
+#include "../inc/alarm_controler.h"
 
 struct sckt_sstate{
     int socket;
