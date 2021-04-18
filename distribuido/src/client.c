@@ -9,13 +9,11 @@
 #include "../inc/client.h"
 #include "../inc/gpio.h"
 
-char initial[9];
 
 int trigger = 0;
 int once = 1 ;
 
 void handle_initial(int signum){
-	sensor_state_atualize(initial);
 	trigger=1;
 }
 
@@ -42,6 +40,7 @@ void send_message(char *mensagem, int clienteSocket){
     int tamanhoMensagem = strlen(mensagem);
     int totalBytesRecebidos;
 
+
     if(send(clienteSocket, mensagem, tamanhoMensagem, 0) != tamanhoMensagem)
 		printf("Erro no envio: numero de bytes enviados diferente do esperado\n");
 
@@ -59,13 +58,15 @@ void send_message(char *mensagem, int clienteSocket){
 
 void *wsensor_change(){
 	char final[9];
+	char initial[9]={'D','D','D','D','D','D','D','D','\0'};
+
 	int cliente;
 
 	signal(SIGUSR1, handle_initial);
 
 	while(1){
 		if(trigger){
-			usleep(100000);
+			
 			sensor_state_atualize(final);
 			if(strcmp(initial,final)!=0){
 				for(int i=0; i<9; i++){
@@ -75,6 +76,7 @@ void *wsensor_change(){
 				if(once){
 					once = 0;
 					int cliente = connect_server(10022, "192.168.0.53");
+					usleep(1000000);
 				}
     			send_message(final, cliente);
 			}

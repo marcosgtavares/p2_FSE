@@ -29,10 +29,14 @@ void init_state(char *in_state){
 void handle_change_s(char *sensor_state){
     FILE *fp;
     char states[16];
+    char o_f;
     fp=fopen("../controler", "w+");
-    if(fgetc(fp)=='L'){
-        //LIGA ALARME;
+    while(o_f=(fgetc(fp))!='\0'){
+        if(o_f=='L'){
+            printf("ALARME\n");
+        }
     }
+    
     fclose(fp);
     fp=fopen("../controler", "w+");
 

@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 
     
 
-    usleep(100000);
+    usleep(10000);
 
     send_message(I, cliente, th);
 

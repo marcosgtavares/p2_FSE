@@ -32,6 +32,7 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
     int tamanhoMensagem = strlen(mensagem);
     int totalBytesRecebidos;
 
+
     if(send(clienteSocket, mensagem, tamanhoMensagem, 0) != tamanhoMensagem)
 		printf("Erro no envio: numero de bytes enviados diferente do esperado\n");
 
