@@ -5,7 +5,7 @@
 #include <pthread.h> 
 //#include <signal.h>
 
-#include "../inc/server.h"
+//#include "../inc/server.h"
 #include "../inc/client.h"
 
 int socket;
