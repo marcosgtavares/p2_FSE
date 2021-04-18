@@ -44,13 +44,13 @@ int main(int argc, char *argv[]) {
     char I[]="I";
     char T[]="T";
 
-    char *ip=th=(char *)malloc(sizeof(char)*14);
+    char *ip=(char *)malloc(sizeof(char)*14);
     char ip2[]="192.168.0.52";
     for(int i=0; i<14; i++){
         ip[i]=ip2[i];
     }
 
-    //int cliente = connect_server(servD, ip);
+    int cliente = connect_server(servD, ip);
 
     usleep(100000);
 
