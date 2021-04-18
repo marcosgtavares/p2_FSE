@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 
     cliente = connect_server(servD, "192.168.0.52");
 
-    usleep(100000);
+    //usleep(100000);
 
     //send_message(I, cliente, th);
 
