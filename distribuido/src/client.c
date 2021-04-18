@@ -74,12 +74,13 @@ void *wsensor_change(){
 						
 						send_message(finals, cliente);
 
-						usleep(100000);
+						usleep(10000);
 
 						break;
 					}
-					printf("UGH");
+				
 				}
+					printf("UGH1");
 			}
 			trigger=1;
 		}
