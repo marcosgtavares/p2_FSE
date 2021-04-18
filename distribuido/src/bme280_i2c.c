@@ -98,7 +98,7 @@ int set_i2c_addr_sensor(){
 
 void *req_temp_hum(void *th){
 	struct bme280_data comp_data;
-	
+	int rslt;
 
 	signal(SIGALRM, timer);
 	signal(SIGINT, end_execB);
