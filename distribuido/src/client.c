@@ -69,7 +69,7 @@ void *wsensor_change(){
 			
 			sensor_state_atualize(final);
 			if(strcmp(initial,final)!=0){
-				
+				printf("sad");
 				
 				cliente = connect_server(10022, "192.168.0.53");
 				
