@@ -15,7 +15,7 @@ int connect_server(unsigned short servidorPorta, char *IP_Servidor){
 	if((clienteSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
 		printf("Erro no socket()\n");
     // Construir struct sockaddr_in
-	memset(&servidorAddr, 0, sizeof(servidorAddr)); // Zerando a estrutura de dados
+	//memset(&servidorAddr, 0, sizeof(servidorAddr)); // Zerando a estrutura de dados
 	servidorAddr.sin_family = AF_INET;
 	servidorAddr.sin_addr.s_addr = inet_addr(IP_Servidor);
 	servidorAddr.sin_port = htons(servidorPorta);
