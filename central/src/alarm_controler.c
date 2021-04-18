@@ -12,16 +12,17 @@ void handle_change_s(char *sensor_state){
     
     if(sum_s!=0){
         for(int i=0;i<8;i++){
-        sum_s2+=sensor_state[i];
+            sum_s2+=sensor_state[i];
         }
         if(sum_s<sum_s2){
-            sum_s=sum_s2;
-            sum_s2=0;
+            
             if(alarm_dl){
                 printf("liga alarme");    
             }
              
         }
+        sum_s=sum_s2;
+        sum_s2=0;
     }
     else{
         for(int i=0;i<8;i++){
