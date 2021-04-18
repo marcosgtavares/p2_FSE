@@ -7,7 +7,16 @@
 #include "../inc/server.h"
 #include "../inc/client.h"
 
+int socket
+
+void end_exec(int sigint){
+    close(socket);
+    exit(0);
+}
+
 int main(int argc, char *argv[]) {
+    signal(SIGINT, end_exec);
+    signal(SIGTSTP, end_exec);
 
     unsigned short servD = 10122;
     unsigned short servC = 10022;
