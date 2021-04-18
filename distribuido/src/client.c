@@ -65,11 +65,9 @@ void *wsensor_change(){
 
 	while(1){
 		if(trigger){
-			printf("s");
 			sensor_state_atualize(finals);
 			for(int i=0;i<8;i++){
 				if(finals[i]!='D'){
-					printf("sad");
 				
 					cliente = connect_server(10022, "192.168.0.53");
 					

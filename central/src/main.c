@@ -47,16 +47,16 @@ int main(int argc, char *argv[]) {
 
     cliente = connect_server(servD, "192.168.0.52");
 
-    
+    char ordem[4];
 
     usleep(10000);
 
     send_message(I, cliente, th);
 
     while(1){
-        sleep(1);
+        scanf("%s", ordem);
         cliente = connect_server(servD, "192.168.0.52");
-        send_message(T, cliente, th);
+        send_message(ordem, cliente, th);
         printf("%s\n",th);
     }
 
