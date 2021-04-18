@@ -97,6 +97,7 @@ void TrataClienteTCP(int socketCliente) {
 		}
 		buffer[14]='\0';
 		tamanhoRecebido = strlen(buffer);
+		printf("|%s|",buffer);
 	}
 
 	if(buffer[0]=='O'){//Liga, desliga gadgets
