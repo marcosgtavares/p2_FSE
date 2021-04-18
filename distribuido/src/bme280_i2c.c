@@ -15,11 +15,18 @@
 
 int fd;
 int time=0;
+struct bme280_dev *dev;
 
 struct param_adress{
 	float temp;
 	float hum;
 };
+
+void end_execB(int sigint){
+    close(fd);
+	free(dev);
+    exit(0);
+}
 
 void timer(int signum){
 	printf("YAY");
@@ -91,9 +98,11 @@ int set_i2c_addr_sensor(){
 
 void *req_temp_hum(void *th){
 	struct bme280_data comp_data;
-	struct bme280_dev *dev;
+	
 
 	signal(SIGALRM, timer);
+	signal(SIGINT, end_execB);
+    signal(SIGTSTP, end_execB);
 
     dev = init_sensor();
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
@@ -117,7 +126,6 @@ void *req_temp_hum(void *th){
 
 void precocious_req(float *temp, float *hum){
 	struct bme280_data comp_data;
-	struct bme280_dev *dev;
 
 	signal(SIGALRM, timer);
 
