@@ -7,6 +7,8 @@
 
 #include "../inc/server.h"
 #include "../inc/client.h"
+#include "../inc/alarm_controler.h"
+
 
 int sockets;
 char *th;
@@ -59,6 +61,8 @@ int main(int argc, char *argv[]) {
     char ordem[4];
 
     usleep(10000);
+
+    liga_desliga_alarme();
 
     send_message(I, cliente, th);
 
