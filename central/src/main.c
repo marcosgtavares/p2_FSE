@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     char I[]="I";
     char T[]="T";  
 
-    int cliente = connect_server(servD, "192.168.0.52");
+    //int cliente = connect_server(servD, "192.168.0.52");
 
     usleep(100000);
 
