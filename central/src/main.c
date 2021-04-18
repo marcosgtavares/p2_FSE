@@ -16,8 +16,8 @@ void end_exec(int sigint){
 }
 
 int main(int argc, char *argv[]) {
-    signal(SIGINT, end_exec);
-    signal(SIGTSTP, end_exec);
+    //signal(SIGINT, end_exec);
+    //signal(SIGTSTP, end_exec);
 
     unsigned short servD = 10122;
     unsigned short servC = 10022;
