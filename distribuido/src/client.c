@@ -60,14 +60,13 @@ void *wsensor_change(){
 	char finals[9];
 
 	int cliente;
-
-	//signal(SIGUSR1, handle_initial);
-		usleep(3000000);
+	int i=0;
+	signal(SIGUSR1, handle_initial);
 
 	while(1){
-		//if(trigger){
+		if(trigger){
 			sensor_state_atualize(finals);
-			for(int i=0;i<8;i++){
+			for(i=0;i<8;i++){
 				if(finals[i]!='D'){
 				
 					cliente = connect_server(10022, "192.168.0.53");
@@ -81,8 +80,6 @@ void *wsensor_change(){
 				
 			
 		}
-		usleep(1000000);
-			printf("asd");
-	//}
+	}
 
 }
