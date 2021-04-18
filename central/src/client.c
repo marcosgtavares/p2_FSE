@@ -9,21 +9,21 @@
 
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
-    int clienteSocket;
+    int clienteSockets;
     struct sockaddr_in servidorAddr;
     // Criar Socket
-	if((clienteSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
+	if((clienteSockets = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
 		printf("Erro no socket()\n");
     // Construir struct sockaddr_in
 	memset(&servidorAddr, 0, sizeof(servidorAddr)); // Zerando a estrutura de dados
 	servidorAddr.sin_family = AF_INET;
 	servidorAddr.sin_addr.s_addr = inet_addr(IP_Servidor);
 	servidorAddr.sin_port = htons(servidorPorta);
-    if(connect(clienteSocket, (struct sockaddr *) &servidorAddr, 
+    if(connect(clienteSockets, (struct sockaddr *) &servidorAddr, 
 							sizeof(servidorAddr)) < 0)
 		printf("Erro no connect()\n");
     
-    return clienteSocket;
+    return clienteSockets;
 }
 
 void send_message(char *mensagem, int clienteSocket, char *t_h){
