@@ -13,7 +13,9 @@ int main(int argc, char *argv[]) {
     unsigned short servC = 10022;
 
     pthread_t alarm_watcher;
-    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&servC); 
+    int socket = open_socket(servC);
+
+    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)&socket); 
 
     char *th=(char *)malloc(sizeof(char)*11);
 
