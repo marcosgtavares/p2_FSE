@@ -58,7 +58,6 @@ void send_message(char *mensagem, int clienteSocket){
 
 void *wsensor_change(){
 	char finals[9];
-	char initials[9]="DDDDDDDD";
 
 	int cliente;
 
@@ -68,15 +67,20 @@ void *wsensor_change(){
 		if(trigger){
 			
 			sensor_state_atualize(finals);
-			if(strcmp(initials,finals)!=0){
-				printf("sad");
+			for(int i=0;i<8;i++){
+				if(finals[i]!='D'){
+					printf("sad");
 				
-				cliente = connect_server(10022, "192.168.0.53");
-				
-    			send_message(finals, cliente);
+					cliente = connect_server(10022, "192.168.0.53");
+					
+					send_message(finals, cliente);
 
-				usleep(100000);
+					usleep(100000);
+					break;
+				}
 			}
+				
+			
 		}
 	}
 
