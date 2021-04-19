@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     //pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores NAO FUNCIONA MAIS agora chamado dentro da funcao treat messages
 
     while(1){
-        sleep(1);
+        usleep(1000000);
     }
 
 
