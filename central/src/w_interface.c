@@ -13,9 +13,13 @@ struct input_params{
 
 void *screen_input(void *commands){
     int cliente;
+    WINDOW *input = ((struct input_params *)commands)->input;
+    WINDOW *interface = ((struct input_params *)commands)->interface;
+
     while(1){
+
         mvwprintw(input, 1, 12, "Input:");
-        wmove(((struct input_params *)commands)->input, 1, 19);
+        wmove(input, 1, 19);
         wrefresh(input);
         scanf("%s", ((struct input_params *)commands)->command);
         if(((struct input_params *)commands)->command)[1]!='G'){
@@ -26,7 +30,7 @@ void *screen_input(void *commands){
 
         switch(((struct input_params *)commands->ret)[1]){
             case 'A':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 2, "L1:%c",'L');
                 }
                 else{
@@ -34,7 +38,7 @@ void *screen_input(void *commands){
                 }
                 break;
             case 'B':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 8, "L2:%c",'L');
                 }
                 else{
@@ -42,7 +46,7 @@ void *screen_input(void *commands){
                 }
                 break;
             case 'C':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 14, "L3:%c",'L');
                 }
                 else{
@@ -50,7 +54,7 @@ void *screen_input(void *commands){
                 }
                 break;    
             case 'D':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 20, "L4:%c",'L');
                 }
                 else{
@@ -58,7 +62,7 @@ void *screen_input(void *commands){
                 }
                 break;
             case 'E':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 26, "A1:%c",'L');
                 }
                 else{
@@ -66,7 +70,7 @@ void *screen_input(void *commands){
                 }
                 break;
             case 'F':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 32, "A2:%c",'L');
                 }
                 else{
@@ -74,7 +78,7 @@ void *screen_input(void *commands){
                 }
                 break;
             case 'G':
-                if((struct input_params *)commands->ret[2]=='1'){
+                if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 7, 21, "ALARME:%c",'L');
                 }
                 else{
