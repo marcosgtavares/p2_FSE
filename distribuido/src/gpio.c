@@ -4,6 +4,21 @@
 #include <wiringPi.h> 
 #include "../inc/gpio.h"
 
+#define L_1_OUT 0
+#define L_2_OUT 1
+#define L_3_OUT 2
+#define L_4_OUT 3
+#define A_1_OUT 23
+#define A_2_OUT 24
+#define S_P_1_IN 6
+#define S_P_2_IN 25
+#define S_A_1_IN 21
+#define S_A_2_IN 22
+#define S_A_3_IN 26
+#define S_A_4_IN 27
+#define S_A_5_IN 28
+#define S_A_6_IN 29
+
 int only_once=0;
 int only_once2=1;
 int switchonoff=0;
@@ -28,49 +43,49 @@ void sensor_state_atualize(char *current){//Atualiza a string com os estados dos
         pinMode (29, INPUT); 
     }
 
-    if(digitalRead(6)==1){//PSAlA
+    if(digitalRead(S_P_1_IN)==1){//PSAlA
         current[0]='L';
     }
     else{
         current[0]='D';
     }
-    if(digitalRead(25)==1){//PCOZINHA
+    if(digitalRead(S_P_2_IN)==1){//PCOZINHA
         current[1]='L';
     }
     else{
         current[1]='D';
     }
-    if(digitalRead(21)==1){//DCOZINHA
+    if(digitalRead(S_A_1_IN)==1){//DCOZINHA
         current[2]='L';
     }
     else{
         current[2]='D';
     }
-    if(digitalRead(22)==1){//JCOZINHA
+    if(digitalRead(S_A_2_IN)==1){//JCOZINHA
         current[3]='L';
     }
     else{
         current[3]='D';
     }
-    if(digitalRead(26)==1){//DSALA
+    if(digitalRead(S_A_3_IN)==1){//DSALA
         current[4]='L';
     }
     else{
         current[4]='D';
     }
-    if(digitalRead(27)==1){//JSALA
+    if(digitalRead(S_A_4_IN)==1){//JSALA
         current[5]='L';
     }
     else{
         current[5]='D';
     }
-    if(digitalRead(28)==1){//JQ1
+    if(digitalRead(S_A_5_IN)==1){//JQ1
         current[6]='L';
     }
     else{
         current[6]='D';
     }
-    if(digitalRead(29)==1){//JQ2
+    if(digitalRead(S_A_6_IN)==1){//JQ2
         current[7]='L';
     }
     else{
@@ -86,34 +101,34 @@ void on_off_gadgets(char gadget, char on_off){//Liga ou desliga os gadgets de ac
     }
 
     if(switchonoff){//Caso tenha lido o estado anteriormente
-        pinMode (0, OUTPUT);
-        pinMode (1, OUTPUT);
-        pinMode (2, OUTPUT);
-        pinMode (3, OUTPUT);
-        pinMode (23, OUTPUT);
-        pinMode (24, OUTPUT); 
+        pinMode (L_1_OUT, OUTPUT);
+        pinMode (L_2_OUT, OUTPUT);
+        pinMode (L_3_OUT, OUTPUT);
+        pinMode (L_4_OUT, OUTPUT);
+        pinMode (A_1_OUT, OUTPUT);
+        pinMode (A_2_OUT, OUTPUT); 
         switchonoff=0;
     }
     
 
     switch(gadget){
         case 'A'://L1
-            digitalWrite(0,on_off-48);
+            digitalWrite(L_1_OUT,on_off-48);
             break;
         case 'B'://L2
-            digitalWrite(1,on_off-48);
+            digitalWrite(L_2_OUT,on_off-48);
             break;
         case 'C'://L3
-            digitalWrite(2,on_off-48);
+            digitalWrite(L_3_OUT,on_off-48);
             break;
         case 'D'://L4
-            digitalWrite(3,on_off-48);
+            digitalWrite(L_4_OUT,on_off-48);
             break;
         case 'E'://A1
-            digitalWrite(23,on_off-48);
+            digitalWrite(A_1_OUT,on_off-48);
             break;
         case 'F'://A2
-            digitalWrite(24,on_off-48);
+            digitalWrite(A_2_OUT,on_off-48);
             break;
     }
 }
@@ -127,48 +142,48 @@ void initial_state(char *currentO, char *currentI){//Captura os estados dos sens
 	sensor_state_atualize(currentO);
 
     if(!switchonoff){
-        pinMode (0, INPUT);
-        pinMode (1, INPUT);
-        pinMode (2, INPUT);
-        pinMode (3, INPUT);
-        pinMode (23, INPUT);
-        pinMode (24, INPUT); 
+        pinMode (L_1_OUT, OUTPUT);
+        pinMode (L_2_OUT, OUTPUT);
+        pinMode (L_3_OUT, OUTPUT);
+        pinMode (L_4_OUT, OUTPUT);
+        pinMode (A_1_OUT, OUTPUT);
+        pinMode (A_2_OUT, OUTPUT);
         switchonoff=1;
     }
 
     
 
-	if(digitalRead(0)==1){//L1
+	if(digitalRead(L_1_OUT)==1){//L1
         currentI[0]='L';
     }
 	else{
 		currentI[0]='D';
 	}
-	if(digitalRead(1)==1){//L2
+	if(digitalRead(L_2_OUT)==1){//L2
         currentI[1]='L';
     }
 	else{
 		currentI[1]='D';
 	}
-	if(digitalRead(2)==1){//L3
+	if(digitalRead(L_3_OUT)==1){//L3
         currentI[2]='L';
     }
 	else{
 		currentI[2]='D';
 	}
-	if(digitalRead(3)==1){//L4
+	if(digitalRead(L_4_OUT)==1){//L4
         currentI[3]='L';
     }
 	else{
 		currentI[3]='D';
 	}
-	if(digitalRead(23)==1){//A1
+	if(digitalRead(A_1_OUT)==1){//A1
         currentI[4]='L';
     }
 	else{
 		currentI[4]='D';
 	}
-	if(digitalRead(24)==1){//A2
+	if(digitalRead(A_2_OUT)==1){//A2
         currentI[5]='L';
     }
 	else{
