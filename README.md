@@ -21,3 +21,5 @@ O alarme aciona apenas quando o estado dos sensores muda. EX: "LLLLLLLL" alarme 
 O estado dos sensores e das lampadas é mostrado utilzando as letras 'L', para ligado, e 'D', para desligado;
 
 Para encerrar utilize ctrl+C ou ctrl+z
+
+Encerre primeiro o Servidor Central, depois o Distribuido.
