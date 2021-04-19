@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     unsigned short servD = 10122;
     unsigned short servC = 10022;
 
-    pthread_t alarm_watcher;
+    pthread_t alarm_watcher, temp_humidity;
     int sockets = open_socket(servC);
 
     struct sckt_sstate *alarm_params = (struct sckt_sstate *)malloc(sizeof(struct sckt_sstate));
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 
     pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
 
-    pthread_create(&temp_humidity, NULL, temp_hum, (void *)th);
+    pthread_create(&temp_humidity, NULL, te_hum, (void *)th);
 
     
 
