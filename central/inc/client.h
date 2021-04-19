@@ -3,5 +3,6 @@
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor);
 void send_message(char *mensagem, int clienteSocket, char *t_h);
+void *te_hum(void *temp_hum);
 
 #endif

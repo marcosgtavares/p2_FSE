@@ -26,7 +26,7 @@ int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     return clienteSockets;
 }
 
-void send_message(char *mensagem, int clienteSocket, char *t_h){
+void send_message(char *mensagem, int clienteSocket, char *ret){
     char buffer[16];
     int tamanhoMensagem = strlen(mensagem);
     int totalBytesRecebidos;
@@ -46,11 +46,21 @@ void send_message(char *mensagem, int clienteSocket, char *t_h){
 	buffer[totalBytesRecebidos] = '\0';
 
 	for(int i=0;i<totalBytesRecebidos;i++){
-		t_h[i]=buffer[i];
+		ret[i]=buffer[i];
 	}
-	t_h[totalBytesRecebidos] = '\0';
+	ret[totalBytesRecebidos] = '\0';
 
 	close(clienteSocket);
     //close(clienteSocket);
 
+}
+
+void *te_hum(void *temp_hum){
+	int cliente;
+	int servD = atoi(temp_hum);
+	while(1){
+		sleep(1);
+		cliente = connect_server(10122, "192.168.0.52");
+		send_message("T", cliente, (char *)temp_hum);
+	}
 }

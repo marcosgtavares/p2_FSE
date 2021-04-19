@@ -12,6 +12,7 @@
 
 int sockets;
 char *th;
+char *ret;
 
 struct sckt_sstate{
     int sockets;
@@ -21,6 +22,7 @@ struct sckt_sstate{
 void end_exec(int sigint){
     close(sockets);
     free(th);
+    free(ret);
     exit(0);
 }
 
@@ -38,14 +40,17 @@ int main(int argc, char *argv[]) {
 
     alarm_params->sockets=sockets;
 
-
-   
+    ret=(char *)malloc(sizeof(char)*16);
+    th=(char *)malloc(sizeof(char)*16);
+    sprintf(th, "%s", servD);
 
     pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
 
-    th=(char *)malloc(sizeof(char)*16);
+    pthread_create(&temp_humidity, NULL, temp_hum, (void *)th);
 
+    
 
+    
 
     char LL1[]="OA1";
     char LL2[]="OB1";
@@ -64,16 +69,15 @@ int main(int argc, char *argv[]) {
     char ordem[4];
 
     usleep(10000);
- liga_desliga_alarme();
+    liga_desliga_alarme();
 
-    send_message(I, cliente, th);
-    printf("asd");
+    send_message(I, cliente, ret);
 
     while(1){
         scanf("%s", ordem);
         cliente = connect_server(servD, "192.168.0.52");
-        send_message(ordem, cliente, th);
-        printf("%s\n",th);
+        send_message(ordem, cliente, ret);
+        printf("%s\n", ret);
     }
 
 
