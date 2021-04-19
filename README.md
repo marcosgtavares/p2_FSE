@@ -19,3 +19,5 @@ Caso o alarme seja acionado, será mostrado na tela a frase "ALARME ACIONADO", c
 O alarme aciona apenas quando o estado dos sensores muda. EX: "LLLLLLLL" alarme desligado, liga alarme, muda para "DLLLLLLL", alarme acionado; 
 
 O estado dos sensores e das lampadas é mostrado utilzando as letras 'L', para ligado, e 'D', para desligado;
+
+Para encerrar utilize ctrl+C ou ctrl+z

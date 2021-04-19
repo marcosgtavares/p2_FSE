@@ -53,6 +53,7 @@ void *treat_messages(void *servidorSocketv){
 	int socketCliente;
 	struct sockaddr_in clienteAddr;
 
+
 	int servidorSocket = *((int *)servidorSocketv);
 
 	precocious_req(&temp, &hum);//Primeira chamada da funçao que lê o sensor bme280 para ter os dados disponiveis de imediato
