@@ -67,6 +67,7 @@ int main(int argc, char *argv[]) {
  liga_desliga_alarme();
 
     send_message(I, cliente, th);
+    printf("asd");
 
     while(1){
         scanf("%s", ordem);
