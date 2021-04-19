@@ -25,7 +25,8 @@ void *screen_input(void *commands){
 
     while(1){
 
-        mvwscanw(input,1, 19,"%s", ((struct input_params *)commands)->command);//Conseme muito o processador
+        wmove(input,1, 19);
+        wscanw(input,"%s", ((struct input_params *)commands)->command);//Conseme muito o processador
         time ( &rawtime );//Grava o tempo atual
         timeinfo = localtime ( &rawtime );
         

@@ -63,11 +63,10 @@ void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensore
 	int cliente;
 	//signal(SIGUSR2, handle_initial);NAO FUNCIONA MAIS
 	sensor_state_atualize(initials);
-	
+
 	while(1){
 		//if(trigger){NAO FUNCIONA MAIS
 			sensor_state_atualize(finals);
-			printf("Sensor state sent\n");
 			if(strcmp(initials,finals)!=0){//Caso o estado seja diferente do anterior, mande a mensagem com o estado atual
 				for(int i=0;i<8;i++){
 					initials[i]=finals[i];
