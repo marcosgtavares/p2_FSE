@@ -7,7 +7,7 @@
 #include <pthread.h> 
 
 #include "../inc/server.h"
-#include "../inc/client.h"
+//#include "../inc/client.h"
 
 
 int servsocket;
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
 
     pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); //Cria a thread que trata os comandos do servidor central
 
-    //pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores
+    //pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores NAO FUNCIONA MAIS agora chamado dentro da funcao treat messages
 
     while(1){
         sleep(1);

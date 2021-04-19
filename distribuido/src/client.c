@@ -16,7 +16,7 @@ char initials[9];
 
 /*void handle_initial(int signum){//Funçao que lida com o sigusr1 e liga o loop da thread que observa as mudanças de estado dos sensores
 	trigger=1;
-	sensor_state_atualize(initials);//Define o primeiro estado
+	sensor_state_atualize(initials);//Define o primeiro estado NAO FUNCIONA MAIS
 }*/
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
@@ -61,10 +61,11 @@ void send_message(char *mensagem, int clienteSocket){
 void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensores
 	char finals[9];
 	int cliente;
-	//signal(SIGUSR2, handle_initial);
-
+	//signal(SIGUSR2, handle_initial);NAO FUNCIONA MAIS
+	sensor_state_atualize(initials);
+	
 	while(1){
-		//if(trigger){
+		//if(trigger){NAO FUNCIONA MAIS
 			sensor_state_atualize(finals);
 			printf("Sensor state sent\n");
 			if(strcmp(initials,finals)!=0){//Caso o estado seja diferente do anterior, mande a mensagem com o estado atual

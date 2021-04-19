@@ -95,7 +95,7 @@ void TrataClienteTCP(int socketCliente) {
 	if(buffer[0]=='I' && one_activation){//Caso receba 'I' como mensagem, irá enviar o estado atual dos sensores e gadgets(lampada, ar)
 		one_activation=0;
 		initial_state(input_initial,initial);
-		//kill(getpid(), SIGUSR2);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central
+		//kill(getpid(), SIGUSR2);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central NAO FUNCIONA MAIS
 		
 		pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores
 
