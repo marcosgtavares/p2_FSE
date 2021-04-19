@@ -115,16 +115,16 @@ int main(int argc, char *argv[]) {
 
     usleep(10000);
 
-    char tempe[7];
-    char humid[7];
+    char tempe[8];
+    char humid[8];
 
-    for(int i=0;i<6;i++){//Separa as informações do ponteiro
+    for(int i=0;i<7;i++){//Separa as informações do ponteiro
         tempe[i]=ret[i];
         humid[i]=ret[i+6];
     }
 
-    tempe[6]='\0';
-    humid[13]='\0';
+    tempe[7]='\0';
+    humid[7]='\0';
 
     mvwprintw(interface, 5, 2, "Temperatura:%.6s",tempe);mvwprintw(interface, 5, 30, "Humidade:%.6s",humid);//Estado inicial requisitado a parte
     
@@ -143,8 +143,8 @@ int main(int argc, char *argv[]) {
             humid[i]=((struct input_params *)th)->ret[i+6];
         }
 
-        tempe[6]='\0';
-        humid[13]='\0';
+        tempe[7]='\0';
+        humid[7]='\0';
         mvwprintw(interface, 5, 2, "Temperatura:%.6s  ",tempe);
 		mvwprintw(interface, 5, 30, "Humidade:%.6s  ",humid);
         wmove(input, 1, 19);
