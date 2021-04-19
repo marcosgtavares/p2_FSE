@@ -20,8 +20,8 @@ void *screen_input(void *commands){
     while(1){
 
         mvwprintw(input, 1, 12, "Input:");
-        wmove(input, 1, 19);
-       
+        //wmove(input, 1, 19);
+        wrefresh(input);
         mvwscanw(input,1, 19,"%s", ((struct input_params *)commands)->command);
         mvwprintw(input, 1, 12, "Input:           ");
         wrefresh(input);
