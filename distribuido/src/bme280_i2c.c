@@ -28,9 +28,16 @@ void end_execB(int sigint){
     exit(0);
 }
 
-void timer(int signum){
-	printf("YAY");
-	time=1;
+void timer(int signum){//Le a temperatura a cada segundos
+	alarm(1);
+	struct bme280_data comp_data;
+	int rslt;
+
+	rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
+	((struct param_adress *)th)->temp = (float)comp_data.temperature;
+	((struct param_adress *)th)->hum = (float)comp_data.humidity;
+
+	printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  ((struct param_adress *)th)->temp, ((struct param_adress *)th)->hum);
 }
 
 void user_delay_ms(uint32_t period, void *intf_ptr){
@@ -96,11 +103,11 @@ int set_i2c_addr_sensor(){
 	return fd;
 }
 
-void *req_temp_hum(void *th){
+void *req_temp_hum(void *th){//Função da thread que checa a temperara e humidade periodicamente
 	struct bme280_data comp_data;
 	int rslt;
 
-	signal(SIGALRM, timer);
+	signal(SIGALRM, timer);//Handler de tempo que define quando checar a temperatura, existe para criar sincronia 
 	signal(SIGINT, end_execB);
     signal(SIGTSTP, end_execB);
 
@@ -112,7 +119,7 @@ void *req_temp_hum(void *th){
 
 	
     while(1){
-		if(time==1){
+		/*if(time==1){ Consome muito o processador
 			alarm(1);
 			time=0;
 			rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
@@ -120,11 +127,11 @@ void *req_temp_hum(void *th){
 			((struct param_adress *)th)->hum = (float)comp_data.humidity;
 
 			printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  ((struct param_adress *)th)->temp, ((struct param_adress *)th)->hum);
-		}
+		}*/
 	}	
 }
 
-void precocious_req(float *temp, float *hum){
+void precocious_req(float *temp, float *hum){//Funçao que checa a temperatura e a humidade pela primeira vez
 	struct bme280_data comp_data;
 
 	signal(SIGALRM, timer);

@@ -8,15 +8,15 @@ int only_once=0;
 int only_once2=1;
 int switchonoff=0;
 
-void sensor_state_atualize(char *current){
-    if(only_once==0){
+void sensor_state_atualize(char *current){//Atualiza a string com os estados dos sensores no formato "DDDDDDDD" "LLLLLLLL" D significa desligado e L ligado
+    if(only_once==0){ 
         wiringPiSetup();
         
 
         only_once=1;
     }
     
-    if(only_once2){
+    if(only_once2){//Define o pinmode apenas uma vez
         only_once2=0;
         pinMode (6, INPUT);
         pinMode (25, INPUT);
@@ -79,13 +79,13 @@ void sensor_state_atualize(char *current){
     current[8]='\0';
 }
 
-void on_off_gadgets(char gadget, char on_off){
+void on_off_gadgets(char gadget, char on_off){//Liga ou desliga os gadgets de acordo com o input, "OA1" significa ligar lampada 1;
     if(only_once==0){
         wiringPiSetup();
         only_once=1;
     }
 
-    if(switchonoff){
+    if(switchonoff){//Caso tenha lido o estado anteriormente
         pinMode (0, OUTPUT);
         pinMode (1, OUTPUT);
         pinMode (2, OUTPUT);
@@ -118,7 +118,7 @@ void on_off_gadgets(char gadget, char on_off){
     }
 }
 
-void initial_state(char *currentO, char *currentI){
+void initial_state(char *currentO, char *currentI){//Captura os estados dos sensores(currentO) e dos gadgets(currentI)
     if(only_once==0){
         wiringPiSetup();
         only_once=1;

@@ -41,9 +41,9 @@ int main(int argc, char *argv[]) {
     servsocket=open_socket(serv);
 
     //treat_messages(servsocket); // thread it
-    pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); 
+    pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); //Cria a thread que trata os comandos do servidor central
 
-    pthread_create(&s_change, NULL, wsensor_change, NULL);
+    pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores
 
     while(1){
 

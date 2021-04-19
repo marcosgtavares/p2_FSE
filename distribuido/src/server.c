@@ -55,13 +55,13 @@ void *treat_messages(void *servidorSocketv){
 
 	int servidorSocket = *((int *)servidorSocketv);
 
-	precocious_req(&temp, &hum);
+	precocious_req(&temp, &hum);//Primeira chamada da funçao que lê o sensor bme280 para ter os dados disponiveis de imediato
 
 	pthread_t temp_iterator;
 
 	th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
-	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th) ;
+	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th); //Thread da função que lê o sensor bme280
 
     while(1) {
 		clienteLength = sizeof(clienteAddr);
@@ -85,9 +85,9 @@ void TrataClienteTCP(int socketCliente) {
 	if((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
 		printf("Erro no recv()\n");
 
-	if(buffer[0]=='I'){//Estado inicial
+	if(buffer[0]=='I'){//Caso receba 'I' como mensagem, irá enviar o estado atual dos sensores e gadgets(lampada, ar)
 		initial_state(input_initial,initial);
-		kill(getpid(), SIGUSR1);
+		kill(getpid(), SIGUSR1);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central
 		
 		for(int i=0;i<8;i++){
 			buffer[i]=input_initial[i];
@@ -104,14 +104,14 @@ void TrataClienteTCP(int socketCliente) {
 		on_off_gadgets(buffer[1],buffer[2]);
 	}
 
-	if(buffer[0]=='T'){
-		if(only_once_bme){
+	if(buffer[0]=='T'){//Envia a temperatura e a humidade
+		if(only_once_bme){//Primeira chamada usa os valores gerados por precocious_req
 			alarm(1);
 			only_once_bme=0;
 			gcvt(temp, 5, buffer);
 			gcvt(hum, 5, buffer+6);
 		}
-		else{
+		else{//Usa os valores gerados pela thread que le o sensor bme280
 			gcvt(th->temp, 5, buffer);
 			gcvt(th->hum, 5, buffer+6);
 		}

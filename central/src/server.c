@@ -67,10 +67,11 @@ void TrataClienteTCP(int socketCliente, char *sen_states) {
 			sen_states[i]=buffer[i];
 		}
 		sen_states[8]='\0';
-		handle_change_s(sen_states);
+		handle_change_s(sen_states);//Lida com a mudança de estados e decide se o alarme sera acionado ou nao
 	}
 
 	if(send(socketCliente, buffer, tamanhoRecebido, 0) != tamanhoRecebido)
 		printf("Erro no envio - send()\n");
 		
 }
+

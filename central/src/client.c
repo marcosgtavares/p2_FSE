@@ -55,7 +55,7 @@ void send_message(char *mensagem, int clienteSocket, char *ret){
 
 }
 
-void *te_hum(void *temp_hum){
+void *te_hum(void *temp_hum){//Funçao que lida com a requisição de temperatura e humidade do servidor distribuido
 	int cliente;
 	while(1){
 		sleep(1);
