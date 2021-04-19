@@ -7,6 +7,7 @@
 int alarm_dl=0;
 int sum_s=0;
 int sum_s2=0;
+int one_on=1;
 
 void handle_change_s(char *sensor_state){
     pthread_t audio_alarm;
@@ -17,7 +18,8 @@ void handle_change_s(char *sensor_state){
         }
         if(sum_s<sum_s2){
             
-            if(alarm_dl){
+            if(alarm_dl && one_on){
+                one_on=0;
                 pthread_create(&audio_alarm, NULL, play_audio, NULL);
                 printf("liga alarme");    
             }
@@ -30,7 +32,8 @@ void handle_change_s(char *sensor_state){
         for(int i=0;i<8;i++){
             sum_s+=sensor_state[i];
         }
-        if(alarm_dl){
+        if(alarm_dl && one_on){
+            one_on=0;
             pthread_create(&audio_alarm, NULL, play_audio, NULL);
             printf("liga alarme");       
         }
@@ -52,4 +55,6 @@ void *play_audio(){
     while(alarm_dl){
         system("omxplayer ../audio/subdive.wav");
     }
+    one_on=1;
+    pthread_exit(NULL);
 }
