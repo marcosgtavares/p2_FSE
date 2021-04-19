@@ -17,8 +17,6 @@ char initials[9];
 void handle_initial(int signum){//Funçao que lida com o sigusr1 e liga o loop da thread que observa as mudanças de estado dos sensores
 	trigger=1;
 	sensor_state_atualize(initials);//Define o primeiro estado
-	
-
 }
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
@@ -79,7 +77,7 @@ void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensore
 				send_message(finals, cliente);
 				
 			}
-			usleep(1000000);//Observe a cada 1s
+			usleep(500000);//Observe a cada 500ms
 		}
 	}
 

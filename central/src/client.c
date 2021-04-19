@@ -4,9 +4,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ncurses.h>
+
 #include "../inc/client.h"
 
 int once_dt=1;
+
+struct input_params{
+    char command[30];
+    char ret[16];
+    WINDOW *input;
+    WINDOW *interface;
+}
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     int clienteSockets;
@@ -60,6 +69,9 @@ void *te_hum(void *temp_hum){//Funçao que lida com a requisição de temperatur
 	while(1){
 		sleep(1);
 		cliente = connect_server(10122, "192.168.0.4");
-		send_message("T", cliente, (char *)temp_hum);
+		send_message("T", cliente, (struct input_params *)temp_hum->ret);
+		mvwprintw((struct input_params *)temp_hum->interface, 5, 2, "Temperatura:%s.6",(struct input_params *)temp_hum->ret;
+		mvwprintw((struct input_params *)temp_hum->interface, 5, 24, "Humidade:%s.6",((struct input_params *)temp_hum->ret)+6);
+		refresh((struct input_params *)temp_hum->interface);
 	}
 }

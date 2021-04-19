@@ -27,10 +27,10 @@ struct param_adress *th;
 void end_execB(int sigint){
     close(fd);
 	free(dev);
-    exit(0);
+    pthread_exit(NULL);
 }
 
-void timer(int signum){//Le a temperatura a cada segundos
+void timer(int signum){//Le a temperatura a cada segundo
 	alarm(1);
 	struct bme280_data comp_data;
 	int rslt;
