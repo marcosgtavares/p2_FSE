@@ -35,6 +35,7 @@ void *screen_input(void *commands){
             else{
                 mvwprintw(interface, 7, 21, "ALARME:%c",'D');
             }
+            wrefresh(interface);
             liga_desliga_alarme();
         }
 
@@ -86,6 +87,8 @@ void *screen_input(void *commands){
                 else{
                     mvwprintw(interface, 3, 32, "A2:%c",'D');
                 }
+                break;
+            case 'G':
                 break;
             
             default:

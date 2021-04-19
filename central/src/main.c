@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
 
     send_message(T, cliente, ret);
 
-    mvwprintw(interface, 5, 2, "Temperatura:%s.6",ret);mvwprintw(interface, 5, 24, "Humidade:%s.6",ret+6);
+    mvwprintw(interface, 5, 2, "Temperatura:%s.5",ret);mvwprintw(interface, 5, 24, "Humidade:%s.5",ret+6);
     
 
     mvwprintw(input, 1, 12, "Input:");// Inicializa o texto inicial da janela
@@ -115,6 +115,9 @@ int main(int argc, char *argv[]) {
     pthread_create(&input_bar, NULL, screen_input, (void *)commands);
 
     while(1){
+        mvwprintw(interface, 5, 2, "Temperatura:%s.5",((struct input_params *)th)->ret);
+		mvwprintw(interface, 5, 24, "Humidade:%s.5",(((struct input_params *)th)->ret)+6);
+		wrefresh(interface);
         sleep(1);
     }
 

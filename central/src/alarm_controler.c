@@ -21,7 +21,6 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
             if(alarm_dl && one_on){//Caso tenha pelo menos um sensor acionado e o audio nao esteja tocando
                 one_on=0;
                 pthread_create(&audio_alarm, NULL, play_audio, NULL);
-                printf("liga alarme");    
             }
              
         }
@@ -35,7 +34,6 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
         if(alarm_dl && one_on && sum_s>544){//Caso tenha pelo menos um sensor acionado e o audio nao esteja tocando
             one_on=0;
             pthread_create(&audio_alarm, NULL, play_audio, NULL);
-            printf("liga alarme");       
         }
     }
 
@@ -53,7 +51,7 @@ void liga_desliga_alarme(){//Liga e deliga o alarme
 
 void *play_audio(){//Da play no audio do alarme(apenas um por vez)
     while(alarm_dl){
-        system("aplay audio/subdive.wav && clear");
+        system("aplay audio/subdive.wav > /dev/null 2>&1");
     }
     one_on=1;
     pthread_exit(NULL);
