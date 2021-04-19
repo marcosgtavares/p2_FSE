@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <pthread.h> 
 #include "../inc/alarm_controler.h"
 
 int alarm_dl=0;
