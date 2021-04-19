@@ -16,6 +16,8 @@
 
 float temp, hum;
 
+int one_activation=1;
+
 int only_once_bme=1;
 
 struct param_adress{
@@ -90,7 +92,8 @@ void TrataClienteTCP(int socketCliente) {
 	if((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
 		printf("Erro no recv()\n");
 
-	if(buffer[0]=='I'){//Caso receba 'I' como mensagem, irá enviar o estado atual dos sensores e gadgets(lampada, ar)
+	if(buffer[0]=='I' && one_activation){//Caso receba 'I' como mensagem, irá enviar o estado atual dos sensores e gadgets(lampada, ar)
+		one_activation=0;
 		initial_state(input_initial,initial);
 		//kill(getpid(), SIGUSR2);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central
 		
