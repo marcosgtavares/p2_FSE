@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <ncurses.h>
 #include "../inc/alarm_controler.h"
+#include "../inc/w_interface.h"
+
 
 struct input_params{
     char command[30];
@@ -81,7 +83,7 @@ void *screen_input(void *commands){
                 liga_desliga_alarme();
                 break;
             default:
-                    mvwprintw(interface, 3, 2, "NOPE");
+                    mvwprintw(interface, 9, 2, "NOPE");
                     break;       
         }
 

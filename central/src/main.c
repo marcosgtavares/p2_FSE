@@ -26,7 +26,7 @@ struct input_params{
     char ret[16];
     WINDOW *input;
     WINDOW *interface;
-}
+};
 
 void end_exec(int sigint){
     close(sockets);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     unsigned short servD = 10122;
     unsigned short servC = 10022;
 
-    pthread_t alarm_watcher, temp_humidity;
+    pthread_t alarm_watcher, temp_humidity, input_bar;
     int sockets = open_socket(servC);
 
     struct sckt_sstate *alarm_params = (struct sckt_sstate *)malloc(sizeof(struct sckt_sstate));

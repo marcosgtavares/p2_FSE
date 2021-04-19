@@ -15,7 +15,7 @@ struct input_params{
     char ret[16];
     WINDOW *input;
     WINDOW *interface;
-}
+};
 
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     int clienteSockets;
