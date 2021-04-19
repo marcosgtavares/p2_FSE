@@ -81,6 +81,7 @@ void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensore
 				}
 				cliente = connect_server(10022, "192.168.0.53");
 				send_message(finals, cliente);
+				printf("Sensor state sent\n");
 				
 			}
 			usleep(500000);//Observe a cada 500ms
