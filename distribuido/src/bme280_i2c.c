@@ -30,7 +30,7 @@ void end_execB(int sigint){
     exit(0);
 }
 
-void timer(int signum){//Le a temperatura a cada segundo
+void timer(int signum){//Le a temperatura a cada segundo, ativado por alarme, e é a forma mais eficiente que tropecei em
 	alarm(1);
 	struct bme280_data comp_data;
 	int rslt;
@@ -104,6 +104,8 @@ int set_i2c_addr_sensor(){
   	fd = wiringPiI2CSetup(0x76);
 	return fd;
 }
+/* Como o signal handler é chamado dentro de precocious_req, e precocious_req inicializa tudo necessario para o funcionamento do sensor
+e é chamado dentro da thread que lê as mensagens, a thread dedicada a manter a leitura ativa não é necessaria(Foi uma surpresa pra mim, então eu achei interessante deixar comentado)
 
 void *req_temp_hum(void *th1){//Função da thread que checa a temperara e humidade periodicamente
 	struct bme280_data comp_data;
@@ -119,11 +121,11 @@ void *req_temp_hum(void *th1){//Função da thread que checa a temperara e humid
     int rslt = stream_sensor_data_normal_mode(dev);//Inicialização e configuração inicial do sensor bme280
     dev->delay_us(100, dev->intf_ptr);
     int fd_bme280;
-	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280*/
+	fd_bme280=set_i2c_addr_sensor();//Abre a porta do sensor bme280
 
 	
     while(1){
-		/*if(time==1){ Consome muito o processador
+		if(time==1){ Consome muito o processador
 			alarm(1);
 			time=0;
 			rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
@@ -131,10 +133,10 @@ void *req_temp_hum(void *th1){//Função da thread que checa a temperara e humid
 			((struct param_adress *)th)->hum = (float)comp_data.humidity;
 
 			printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  ((struct param_adress *)th)->temp, ((struct param_adress *)th)->hum);
-		}*/
+		}
 	}	
 }
-
+*/
 void precocious_req(float *temp, float *hum){//Funçao que checa a temperatura e a humidade pela primeira vez
 	struct bme280_data comp_data;
 
