@@ -134,9 +134,7 @@ int main(int argc, char *argv[]) {
         humid[7]='\0';
         mvwprintw(interface, 5, 2, "Temperatura:%.6s  ",tempe);
 		mvwprintw(interface, 5, 30, "Humidade:%.6s  ",humid);
-        wmove(input, 1, 19);
 		wrefresh(interface);
-        wrefresh(input);
         sleep(1);
     }
 
