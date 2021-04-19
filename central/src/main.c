@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
     WINDOW *interface = newwin(10,50,max_y/2-5,max_x/2-25);
     WINDOW *input = newwin(4,50,max_y/2+5,max_x/2-25);
 
-    set_interface(interface);
+    set_interface((void *)interface);
 
     pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
 

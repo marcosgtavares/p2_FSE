@@ -59,8 +59,8 @@ void liga_desliga_alarme(){//Liga e deliga o alarme
     }
 }
 
-void set_interface(WINDOW *inter){
-    interface=inter;
+void set_interface(void *inter){
+    interface=(WINDOW *)inter;
 }
 
 void *play_audio(){//Da play no audio do alarme(apenas um por vez)
