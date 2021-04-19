@@ -22,6 +22,8 @@ struct param_adress{
 	float hum;
 };
 
+struct param_adress *th;
+
 void end_execB(int sigint){
     close(fd);
 	free(dev);
@@ -37,7 +39,7 @@ void timer(int signum){//Le a temperatura a cada segundos
 	((struct param_adress *)th)->temp = (float)comp_data.temperature;
 	((struct param_adress *)th)->hum = (float)comp_data.humidity;
 
-	printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  ((struct param_adress *)th)->temp, ((struct param_adress *)th)->hum);
+	printf("|%f||%f||%f||%f|\n", (float)comp_data.temperature,(float)comp_data.humidity,  th->temp, th->hum);
 }
 
 void user_delay_ms(uint32_t period, void *intf_ptr){
@@ -103,9 +105,11 @@ int set_i2c_addr_sensor(){
 	return fd;
 }
 
-void *req_temp_hum(void *th){//Função da thread que checa a temperara e humidade periodicamente
+void *req_temp_hum(void *th1){//Função da thread que checa a temperara e humidade periodicamente
 	struct bme280_data comp_data;
 	int rslt;
+
+	th=((struct param_adress *)th1);
 
 	signal(SIGALRM, timer);//Handler de tempo que define quando checar a temperatura, existe para criar sincronia 
 	signal(SIGINT, end_execB);
