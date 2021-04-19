@@ -28,6 +28,15 @@ void *screen_input(void *commands){
             send_message(((struct input_params *)commands)->command, cliente, ((struct input_params *)commands)->ret);
         }
         
+        if(((struct input_params *)commands)->command[1]!='G'){
+            if(((struct input_params *)commands)->command[2]=='1'){
+                mvwprintw(interface, 7, 21, "ALARME:%c",'L');
+            }
+            else{
+                mvwprintw(interface, 7, 21, "ALARME:%c",'D');
+            }
+            liga_desliga_alarme();
+        }
 
         switch(((struct input_params *)commands)->ret[1]){
             case 'A':
@@ -78,15 +87,7 @@ void *screen_input(void *commands){
                     mvwprintw(interface, 3, 32, "A2:%c",'D');
                 }
                 break;
-            case 'G':
-                if(((struct input_params *)commands)->ret[2]=='1'){
-                    mvwprintw(interface, 7, 21, "ALARME:%c",'L');
-                }
-                else{
-                    mvwprintw(interface, 7, 21, "ALARME:%c",'D');
-                }
-                liga_desliga_alarme();
-                break;
+            
             default:
                     mvwprintw(interface, 9, 2, "NOPE");
                     break;       
