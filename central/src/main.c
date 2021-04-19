@@ -108,6 +108,8 @@ int main(int argc, char *argv[]) {
 
     send_message("T", cliente, ret);
 
+    usleep(10000);
+
     char tempe[7];
     char humid[7];
 
@@ -138,8 +140,8 @@ int main(int argc, char *argv[]) {
 
         tempe[6]='\0';
         humid[13]='\0';
-        mvwprintw(interface, 5, 2, "Temperatura:%s.5  ",tempe);
-		mvwprintw(interface, 5, 30, "Humidade:%s.5  ",humid);
+        mvwprintw(interface, 5, 2, "Temperatura:%s  ",tempe);
+		mvwprintw(interface, 5, 30, "Humidade:%s  ",humid);
         wmove(input, 1, 19);
 		wrefresh(interface);
         wrefresh(input);

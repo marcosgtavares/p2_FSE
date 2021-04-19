@@ -30,6 +30,8 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
             
             if(alarm_dl && one_on){//Caso tenha pelo menos um sensor acionado e o audio nao esteja tocando
                 one_on=0;
+                mvwprintw(interface, 8, 22, "ALARME ACIONADO");
+                wrefresh(interface);
                 pthread_create(&audio_alarm, NULL, play_audio, NULL);
             }
              
@@ -67,6 +69,8 @@ void *play_audio(){//Da play no audio do alarme(apenas um por vez)
     while(alarm_dl){
         system("aplay audio/subdive.wav > /dev/null 2>&1");
     }
+    mvwprintw(interface, 8, 18, "ALARME NAO ACIONADO");
+    wrefresh(interface);
     one_on=1;
     pthread_exit(NULL);
 }
