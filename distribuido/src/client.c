@@ -19,10 +19,6 @@ void handle_initial(int signum){//Funçao que lida com o sigusr1 e liga o loop d
 	sensor_state_atualize(initials);//Define o primeiro estado
 }
 
-void end_execC(int sigint){
-    exit(0);
-}
-
 int connect_server(unsigned short servidorPorta, char *IP_Servidor){
     int clienteSockets;
     struct sockaddr_in servidorAddr;
@@ -68,8 +64,6 @@ void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensore
 	int cliente;
 	int i=0;
 	signal(SIGUSR1, handle_initial);
-	signal(SIGINT, end_execC);
-    signal(SIGTSTP, end_execC);
 
 	while(1){
 		if(trigger){
