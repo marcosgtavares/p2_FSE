@@ -71,6 +71,8 @@ void TrataClienteTCP(int socketCliente, char *sen_states) {
 
 	if(send(socketCliente, buffer, tamanhoRecebido, 0) != tamanhoRecebido)
 		printf("Erro no envio - send()\n");
+
+	printf("done");
 		
 }
 

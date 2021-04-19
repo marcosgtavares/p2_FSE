@@ -1,6 +1,6 @@
 EXEC = P2_CENTRAL
 CXX = gcc             
-OPTS = -o   
+OPTS = -O2 -Wall -g   
 CFLAGS = $(OPTS)      
 LDFLAGS = -lpthread -lncurses        
 
