@@ -57,10 +57,9 @@ void send_message(char *mensagem, int clienteSocket, char *ret){
 
 void *te_hum(void *temp_hum){
 	int cliente;
-	int servD = atoi(temp_hum);
 	while(1){
 		sleep(1);
-		cliente = connect_server(10122, "192.168.0.52");
+		cliente = connect_server(10122, "192.168.0.4");
 		send_message("T", cliente, (char *)temp_hum);
 	}
 }

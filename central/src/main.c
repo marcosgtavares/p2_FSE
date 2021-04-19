@@ -42,7 +42,6 @@ int main(int argc, char *argv[]) {
 
     ret=(char *)malloc(sizeof(char)*16);
     th=(char *)malloc(sizeof(char)*16);
-    sprintf(th, "%s", servD);
 
     pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
 
@@ -64,7 +63,7 @@ int main(int argc, char *argv[]) {
 
     int cliente;
 
-    cliente = connect_server(servD, "192.168.0.52");
+    cliente = connect_server(servD, "192.168.0.4");
 
     char ordem[4];
 
@@ -75,7 +74,7 @@ int main(int argc, char *argv[]) {
 
     while(1){
         scanf("%s", ordem);
-        cliente = connect_server(servD, "192.168.0.52");
+        cliente = connect_server(servD, "192.168.0.4");
         send_message(ordem, cliente, ret);
         printf("%s\n", ret);
     }
