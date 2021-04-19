@@ -23,13 +23,13 @@ void *screen_input(void *commands){
         wmove(input, 1, 19);
         wrefresh(input);
         scanf("%s", ((struct input_params *)commands)->command);
-        if((struct input_params *)commands)->command[1]!='G'){
+        if(((struct input_params *)commands)->command[1]!='G'){
             cliente = connect_server(10122, "192.168.0.4");
             send_message(((struct input_params *)commands)->command, cliente, ((struct input_params *)commands)->ret);
         }
         
 
-        switch(((struct input_params *)commands->ret)[1]){
+        switch(((struct input_params *)commands)->ret[1]){
             case 'A':
                 if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 2, "L1:%c",'L');
