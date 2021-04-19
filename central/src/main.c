@@ -108,18 +108,38 @@ int main(int argc, char *argv[]) {
 
     send_message("T", cliente, ret);
 
-    mvwprintw(interface, 5, 2, "Temperatura:%s.5",ret);mvwprintw(interface, 5, 24, "Humidade:%s.5",ret+6);
+    char tempe[7];
+    char humid[7];
+
+    for(int i=0;i<6;i++){
+        tempe[i]=ret[i];
+        humid[i]=ret[i+6]
+    }
+
+    tempe[6]='\0';
+    humid[13]='\0';
+
+    mvwprintw(interface, 5, 2, "Temperatura:%s.5",tempe);mvwprintw(interface, 5, 24, "Humidade:%s.5",humid);
     
 
     mvwprintw(input, 1, 12, "Input:");// Inicializa o texto inicial da janela
-    wrefresh(interface);
+    wmove(input, 1, 19);
+	wrefresh(interface);
     wrefresh(input);
 
     pthread_create(&input_bar, NULL, screen_input, (void *)commands);
 
     while(1){
-        mvwprintw(interface, 5, 2, "Temperatura:%s.5  ",((struct input_params *)th)->ret);
-		mvwprintw(interface, 5, 30, "Humidade:%s.5  ",(((struct input_params *)th)->ret)+6);
+
+        for(int i=0;i<6;i++){
+            tempe[i]=((struct input_params *)th)->ret[i];
+            humid[i]=((struct input_params *)th)->ret[i+6];
+        }
+
+        tempe[6]='\0';
+        humid[13]='\0';
+        mvwprintw(interface, 5, 2, "Temperatura:%s.5  ",tempe;
+		mvwprintw(interface, 5, 30, "Humidade:%s.5  ",humid);
         wmove(input, 1, 19);
 		wrefresh(interface);
         wrefresh(input);
