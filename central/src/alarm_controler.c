@@ -34,7 +34,7 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
     mvwprintw(interface, 1, 26, "SA3:%c",sensor_state[4]);mvwprintw(interface, 1, 44, "SA6:%c",sensor_state[7]);
     wrefresh(interface);
 
-    printf(" ");
+    printf("inside");
 
     if(strstr(sensor_state, "L")!=NULL && alarm_dl && one_on){//Caso tenha algum sensor acionado apos a mudança de estado, o alarme esta ligado, acione o alarme
         one_on=0;
