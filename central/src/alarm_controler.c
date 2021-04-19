@@ -36,7 +36,7 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
 
     printf("inside");
 
-    if(strstr(sensor_state, "L")!=NULL && alarm_dl && one_on){//Caso tenha algum sensor acionado apos a mudança de estado, o alarme esta ligado, acione o alarme
+    if(alarm_dl && one_on && strstr(sensor_state, "L")!=NULL ){//Caso tenha algum sensor acionado apos a mudança de estado, o alarme esta ligado, acione o alarme
         one_on=0;
         time ( &rawtime );
         timeinfo = localtime ( &rawtime );
