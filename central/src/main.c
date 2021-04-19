@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
 
     for(int i=0;i<6;i++){
         tempe[i]=ret[i];
-        humid[i]=ret[i+6]
+        humid[i]=ret[i+6];
     }
 
     tempe[6]='\0';
@@ -138,7 +138,7 @@ int main(int argc, char *argv[]) {
 
         tempe[6]='\0';
         humid[13]='\0';
-        mvwprintw(interface, 5, 2, "Temperatura:%s.5  ",tempe;
+        mvwprintw(interface, 5, 2, "Temperatura:%s.5  ",tempe);
 		mvwprintw(interface, 5, 30, "Humidade:%s.5  ",humid);
         wmove(input, 1, 19);
 		wrefresh(interface);
