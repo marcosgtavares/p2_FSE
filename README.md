@@ -5,6 +5,8 @@ digite make no input do terminal para compilar o programa;
 
 Para iniciar o programa, primeiro inicie o servidor distribuido, depois inicie o servidor central, espere 1 segundo para iniciar os valores utilize os comandos abaixo para controlar o programa;
 
+O cursor do ncurses está bugado mas o input permanece o mesmo do scanf.
+
 
 Digite "OA1" para ligar a lampada 1, e "OA0" para desliga-la;
 Digite "OB1" para ligar a lampada 2, e "OB0" para desliga-la;
