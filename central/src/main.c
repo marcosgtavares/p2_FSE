@@ -48,10 +48,9 @@ int main(int argc, char *argv[]) {
     unsigned short servC = 10022;
 
     pthread_t alarm_watcher, temp_humidity, input_bar;
-    int sockets = open_socket(servC);
 
+    int sockets = open_socket(servC);//Abertura do socket do servidor para observar as mudanças nos etados dos sensores(Enviados pelo servidor distribuido)
     struct sckt_sstate *alarm_params = (struct sckt_sstate *)malloc(sizeof(struct sckt_sstate));
-
     alarm_params->sockets=sockets;
 
     ret=(char *)malloc(sizeof(char)*16);
@@ -71,9 +70,9 @@ int main(int argc, char *argv[]) {
 
     set_interface((void *)interface);
 
-    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
+    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params);//Thread que observa mudanças nos estados dos sensores
 
-    pthread_create(&temp_humidity, NULL, te_hum, (void *)th);
+    pthread_create(&temp_humidity, NULL, te_hum, (void *)th);//Thread que requisita a temperatura de 1 em 1 segundo
 
     int cliente;
 
