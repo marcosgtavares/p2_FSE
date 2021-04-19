@@ -65,9 +65,9 @@ void *treat_messages(void *servidorSocketv){
 
 	pthread_t temp_iterator;
 
-	//th = (struct param_adress *)malloc(sizeof(struct param_adress));
+	th = (struct param_adress *)malloc(sizeof(struct param_adress));
 
-	pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th); //Thread da função que lê o sensor bme280
+	//pthread_create(&temp_iterator, NULL, req_temp_hum, (void *)th); //Thread da função que lê o sensor bme280
 
     while(1) {
 		clienteLength = sizeof(clienteAddr);
