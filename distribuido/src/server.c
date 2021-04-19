@@ -80,6 +80,7 @@ void TrataClienteTCP(int socketCliente) {
 	char buffer[16];
 	char initial[9];
 	char input_initial[9];
+	pthread_t s_change;
 
 	int tamanhoRecebido;
 
@@ -89,6 +90,7 @@ void TrataClienteTCP(int socketCliente) {
 	if(buffer[0]=='I'){//Caso receba 'I' como mensagem, irá enviar o estado atual dos sensores e gadgets(lampada, ar)
 		initial_state(input_initial,initial);
 		//kill(getpid(), SIGUSR2);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central
+		
 		pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores
 
 		for(int i=0;i<8;i++){

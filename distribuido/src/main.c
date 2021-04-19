@@ -36,17 +36,16 @@ int main(int argc, char *argv[]) {
     signal(SIGTSTP, end_exec);
     signal(SIGUSR1, ur);
 
-    pthread_t m_tr,s_change;
+    pthread_t m_tr;
 
     servsocket=open_socket(serv);
 
-    //treat_messages(servsocket); // thread it
     pthread_create(&m_tr, NULL, treat_messages, (void *)&servsocket ); //Cria a thread que trata os comandos do servidor central
 
-    pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores
+    //pthread_create(&s_change, NULL, wsensor_change, NULL);//Cria a thread que trata as mudanças nos sensores
 
     while(1){
-        usleep(10000);
+        sleep(1);
     }
 
 
