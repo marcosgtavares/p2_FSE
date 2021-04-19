@@ -10,18 +10,20 @@
 #include "../inc/csv_gen.h"
 
 int alarm_dl=0;
-int sum_s=0;
-int sum_s2=0;
 int one_on=1;
 time_t rawtime;
 struct tm * timeinfo;
+char last_state[8];
 
 WINDOW *interface;
 
 void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos sensores e se o alarme será acionado ou nao
     pthread_t audio_alarm;
     
-    
+    for(int i=0;i<8;i++){
+        last_state[i]=sensor_state[i];
+    }  
+
     time ( &rawtime );
     timeinfo = localtime ( &rawtime );
     create_csv(asctime (timeinfo),sensor_state);
@@ -52,7 +54,18 @@ void liga_desliga_alarme(){//Liga e deliga o alarme
     }
     else{
         alarm_dl=1;
+        if(strstr(last_state, "L")!=NULL && alarm_dl && one_on){
+            one_on=0;
+            time ( &rawtime );
+            timeinfo = localtime ( &rawtime );
+            create_csv(asctime (timeinfo),"Alarme acionado");
+            mvwprintw(interface, 8, 18, "ALARME ACIONADO    ");
+            wrefresh(interface);
+            pthread_create(&audio_alarm, NULL, play_audio, NULL);
+
+        }
     }
+
 }
 
 void set_interface(void *inter){
