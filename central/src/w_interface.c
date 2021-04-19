@@ -21,8 +21,8 @@ void *screen_input(void *commands){
 
         mvwprintw(input, 1, 12, "Input:");
         wmove(input, 1, 19);
-        wrefresh(input);
-        scanf("%s", ((struct input_params *)commands)->command);
+       
+        mvwscanw(input,1, 19,"%s", ((struct input_params *)commands)->command);
         if(((struct input_params *)commands)->command[1]!='G'){
             cliente = connect_server(10122, "192.168.0.4");
             send_message(((struct input_params *)commands)->command, cliente, ((struct input_params *)commands)->ret);
