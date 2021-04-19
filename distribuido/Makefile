@@ -2,7 +2,7 @@ EXEC = P2_DISTRIBUIDO
 CXX = gcc             
 OPTS = -O2 -Wall -g   
 CFLAGS = $(OPTS)      
-LDFLAGS = -lpthread -lwirinPi      
+LDFLAGS = -lpthread -lwiringPi      
 
 
 INCDIR = inc
