@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
 
     cliente = connect_server(servD, "192.168.0.4");
     usleep(10000);
-    send_message("I", cliente, ret);
+    send_message("I", cliente, ret);//Requisição inicial dos estados dos sensores e gadgets
     
     
     time_t rawtime;
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
     refresh();
     box(interface, 0, 0); box(input, 0, 0);
 
-    mvwprintw(interface, 1, 2, "SP1:%c",ret[0]);mvwprintw(interface, 1, 8, "SP2:%c",ret[1]);
+    mvwprintw(interface, 1, 2, "SP1:%c",ret[0]);mvwprintw(interface, 1, 8, "SP2:%c",ret[1]);//Estado inicial requisitado a parte
     
     mvwprintw(interface, 1, 14, "SA1:%c",ret[2]);mvwprintw(interface, 1, 32, "SA4:%c",ret[5]);
     mvwprintw(interface, 1, 20, "SA2:%c",ret[3]);mvwprintw(interface, 1, 38, "SA5:%c",ret[6]);
@@ -112,14 +112,14 @@ int main(int argc, char *argv[]) {
 
     usleep(10000);
 
-    send_message("T", cliente, ret);
+    send_message("T", cliente, ret);//Primeira requisição de temperatura(Ativa a leitura periodica do sensor no servidor distribuido)
 
     usleep(10000);
 
     char tempe[7];
     char humid[7];
 
-    for(int i=0;i<6;i++){
+    for(int i=0;i<6;i++){//Separa as informações do ponteiro
         tempe[i]=ret[i];
         humid[i]=ret[i+6];
     }
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
     tempe[6]='\0';
     humid[13]='\0';
 
-    mvwprintw(interface, 5, 2, "Temperatura:%.6s",tempe);mvwprintw(interface, 5, 30, "Humidade:%.6s",humid);
+    mvwprintw(interface, 5, 2, "Temperatura:%.6s",tempe);mvwprintw(interface, 5, 30, "Humidade:%.6s",humid);//Estado inicial requisitado a parte
     
 
     mvwprintw(input, 1, 12, "Input:");// Inicializa o texto inicial da janela
@@ -135,9 +135,9 @@ int main(int argc, char *argv[]) {
 	wrefresh(interface);
     wrefresh(input);
 
-    pthread_create(&input_bar, NULL, screen_input, (void *)commands);
+    pthread_create(&input_bar, NULL, screen_input, (void *)commands);//Thread onde acontece a captura do input(Consome muita memoria)
 
-    while(1){
+    while(1){//Printa de 1 em um segundo os valores da temperatura e humidade gerados na thread que requisita e armazena esses dados a partir do ponteiro
 
         for(int i=0;i<6;i++){
             tempe[i]=((struct input_params *)th)->ret[i];

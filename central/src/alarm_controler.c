@@ -24,9 +24,9 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
         last_state[i]=sensor_state[i];
     }  
 
-    time ( &rawtime );
+    time ( &rawtime );//Grava tempo atual
     timeinfo = localtime ( &rawtime );
-    create_csv(asctime (timeinfo),sensor_state);
+    create_csv(asctime (timeinfo),sensor_state);//Escreve no csv
 
     mvwprintw(interface, 1, 2, "SP1:%c",sensor_state[0]);mvwprintw(interface, 1, 8, "SP2:%c",sensor_state[1]);
     mvwprintw(interface, 1, 14, "SA1:%c",sensor_state[2]);mvwprintw(interface, 1, 32, "SA4:%c",sensor_state[5]);
@@ -35,7 +35,7 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
     wrefresh(interface);
 
 
-    if(strstr(sensor_state, "L")!=NULL && alarm_dl && one_on){
+    if(strstr(sensor_state, "L")!=NULL && alarm_dl && one_on){//Caso tenha algum sensor acionado apos a mudança de estado, o alarme esta ligado, acione o alarme
         one_on=0;
         time ( &rawtime );
         timeinfo = localtime ( &rawtime );
@@ -54,16 +54,6 @@ void liga_desliga_alarme(){//Liga e deliga o alarme
     }
     else{
         alarm_dl=1;
-        if(strstr(last_state, "L")!=NULL && alarm_dl && one_on){
-            one_on=0;
-            time ( &rawtime );
-            timeinfo = localtime ( &rawtime );
-            create_csv(asctime (timeinfo),"Alarme acionado");
-            mvwprintw(interface, 8, 18, "ALARME ACIONADO    ");
-            wrefresh(interface);
-            pthread_create(&audio_alarm, NULL, play_audio, NULL);
-
-        }
     }
 
 }
@@ -77,9 +67,9 @@ void *play_audio(){//Da play no audio do alarme(apenas um por vez)
         system("aplay audio/subdive.wav > /dev/null 2>&1");
     }
     mvwprintw(interface, 8, 18, "ALARME DESATIVADO");
-    time ( &rawtime );
+    time ( &rawtime );//Grava tempo atual
     timeinfo = localtime ( &rawtime );
-    create_csv(asctime (timeinfo),"Alarme desativado");
+    create_csv(asctime (timeinfo),"Alarme desativado");//Escreve no csv
     wrefresh(interface);
     one_on=1;
     pthread_exit(NULL);

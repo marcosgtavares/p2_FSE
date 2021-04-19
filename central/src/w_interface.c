@@ -25,13 +25,13 @@ void *screen_input(void *commands){
 
     while(1){
 
-        mvwscanw(input,1, 19,"%s", ((struct input_params *)commands)->command);
-        time ( &rawtime );
+        mvwscanw(input,1, 19,"%s", ((struct input_params *)commands)->command);//Conseme muito o processador
+        time ( &rawtime );//Grava o tempo atual
         timeinfo = localtime ( &rawtime );
         
         mvwprintw(input, 1, 12, "Input:           ");
         wrefresh(input);
-        if(((struct input_params *)commands)->command[1]!='G'){
+        if(((struct input_params *)commands)->command[1]!='G'){//Comando "OGX" que liga e desliga o alarme
             cliente = connect_server(10122, "192.168.0.4");
             send_message(((struct input_params *)commands)->command, cliente, ((struct input_params *)commands)->ret);
         }
@@ -45,9 +45,9 @@ void *screen_input(void *commands){
             wrefresh(interface);
             liga_desliga_alarme();
         }
-        create_csv(asctime (timeinfo),((struct input_params *)commands)->command);
+        create_csv(asctime (timeinfo),((struct input_params *)commands)->command);//Escreve no csv
 
-        switch(((struct input_params *)commands)->ret[1]){
+        switch(((struct input_params *)commands)->ret[1]){//Trada os comando de ligar e desligar os gadgets
             case 'A':
                 if(((struct input_params *)commands)->ret[2]=='1'){
                     mvwprintw(interface, 3, 2, "L1:%c",'L');

@@ -14,6 +14,8 @@ Digite "OE1" para ligar o ar condicionado 1, e "OE0" para desliga-lo;
 Digite "OF1" para ligar o ar condicionado 1, e "OF0" para desliga-lo;
 Digite "OG1" para ligar o alarme, e "OG0" para desliga-lo;
 
-Caso o alarme seja acionado, será mostrado na tela a frase "ALARME ACIONADO", caso ele seja desativado posteriormente, sera mostrado na tela "ALARME NAO ACIONADO";
+Caso o alarme seja acionado, será mostrado na tela a frase "ALARME ACIONADO", caso ele seja desativado posteriormente, sera mostrado na tela "ALARME DESATIVADO";
+
+O alarme aciona apenas quando o estado dos sensores muda. EX: "LLLLLLLL" alarme desligado, liga alarme, muda para "DLLLLLLL", alarme acionado; 
 
 O estado dos sensores e das lampadas é mostrado utilzando as letras 'L', para ligado, e 'D', para desligado;

@@ -48,7 +48,6 @@ void *treat_messages(void *alarm_p){
 		if((socketCliente = accept(servidorSocket, (struct sockaddr *) &clienteAddr, &clienteLength)) < 0)
 			printf("Falha no Accept\n");
 		
-		printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
 		TrataClienteTCP(socketCliente, ((struct sckt_sstate *)alarm_p)->sstates);
         close(socketCliente);
 	}

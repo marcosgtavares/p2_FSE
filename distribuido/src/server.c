@@ -69,6 +69,8 @@ void *treat_messages(void *servidorSocketv){
 			printf("Falha no Accept\n");
 		
 		printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
+
+		system("clear");
 		
 		TrataClienteTCP(socketCliente);
         close(socketCliente);
