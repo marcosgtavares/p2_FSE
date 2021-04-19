@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include "../inc/alarm_controler.h"
 #include "../inc/w_interface.h"
+#include "../inc/client.h"
 
 
 struct input_params{
@@ -9,7 +10,7 @@ struct input_params{
     char ret[16];
     WINDOW *input;
     WINDOW *interface;
-}
+};
 
 void *screen_input(void *commands){
     int cliente;
@@ -22,7 +23,7 @@ void *screen_input(void *commands){
         wmove(input, 1, 19);
         wrefresh(input);
         scanf("%s", ((struct input_params *)commands)->command);
-        if(((struct input_params *)commands)->command)[1]!='G'){
+        if((struct input_params *)commands)->command[1]!='G'){
             cliente = connect_server(10122, "192.168.0.4");
             send_message(((struct input_params *)commands)->command, cliente, ((struct input_params *)commands)->ret);
         }
