@@ -88,8 +88,8 @@ void TrataClienteTCP(int socketCliente) {
 
 	if(buffer[0]=='I'){//Caso receba 'I' como mensagem, irá enviar o estado atual dos sensores e gadgets(lampada, ar)
 		initial_state(input_initial,initial);
-		kill(getpid(), SIGUSR1);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central
-		
+		kill(getpid(), SIGUSR2);//Sinal para sincronia da funçao cliente que comunica mudanças nos sensores para o servidor central
+
 		for(int i=0;i<8;i++){
 			buffer[i]=input_initial[i];
 		}

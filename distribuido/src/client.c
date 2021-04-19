@@ -61,11 +61,10 @@ void send_message(char *mensagem, int clienteSocket){
 void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensores
 	char finals[9];
 	int cliente;
-	signal(SIGUSR1, handle_initial);
-	sleep(1);
+	signal(SIGUSR2, handle_initial);
 
 	while(1){
-		//if(trigger){
+		if(trigger){
 			sensor_state_atualize(finals);
 			printf("Sensor state sent\n");
 			if(strcmp(initials,finals)!=0){//Caso o estado seja diferente do anterior, mande a mensagem com o estado atual
@@ -78,7 +77,7 @@ void *wsensor_change(){//Funçao que observa as mudanças de estados dos sensore
 				
 			}
 			usleep(500000);//Observe a cada 500ms
-		//}
+		}
 	}
 
 }
