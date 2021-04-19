@@ -28,14 +28,14 @@ void create_csv(char *d_h, char *com_trig){
         char f_path[30];
         snprintf(f_path, 30, "../log/%s", temp);
         fp=fopen(f_path,"w");
-        fprintf(fp, "Data e hora,Comando,Acionamento Sensor, Acionamento Alarme\n");
+        fprintf(fp, "Data e hora,Comando,Acionamento Sensor,Acionamento Alarme\n");
     }
     else{
-        char str[24];
-        for(int j;j<23;j++){
+        char str[25];
+        for(int j;j<25;j++){
             str[j]=d_h[j];
         }
-        str[23]='\0';
+        str[24]='\0';
         if(com_trig[0]=='L' || com_trig[0]=='D'){
             fprintf(fp, "%s,,%s,\n", str, com_trig);
         }
