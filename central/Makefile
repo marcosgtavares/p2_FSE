@@ -31,4 +31,5 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 		rm -vf $(BINDIR)/$(EXEC) $(OBJ)
 
-./bin/P2_CENTRAL
+run:
+		./bin/P2_CENTRAL

@@ -30,5 +30,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 clean:
 		rm -vf $(BINDIR)/$(EXEC) $(OBJ)
-		
-./bin/P2_DISTRIBUIDO
+
+run:
+		./bin/P2_DISTRIBUIDO
