@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
     tempe[6]='\0';
     humid[13]='\0';
 
-    mvwprintw(interface, 5, 2, "Temperatura:%s.5",tempe);mvwprintw(interface, 5, 24, "Humidade:%s.5",humid);
+    mvwprintw(interface, 5, 2, "Temperatura:%.5s",tempe);mvwprintw(interface, 5, 30, "Humidade:%.5s",humid);
     
 
     mvwprintw(input, 1, 12, "Input:");// Inicializa o texto inicial da janela
@@ -140,8 +140,8 @@ int main(int argc, char *argv[]) {
 
         tempe[6]='\0';
         humid[13]='\0';
-        mvwprintw(interface, 5, 2, "Temperatura:%s  ",tempe);
-		mvwprintw(interface, 5, 30, "Humidade:%s  ",humid);
+        mvwprintw(interface, 5, 2, "Temperatura:%.5s  ",tempe);
+		mvwprintw(interface, 5, 30, "Humidade:%.5s  ",humid);
         wmove(input, 1, 19);
 		wrefresh(interface);
         wrefresh(input);
