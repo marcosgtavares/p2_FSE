@@ -93,8 +93,7 @@ void *screen_input(void *commands){
                 break;
             
             default:
-                    mvwprintw(interface, 9, 2, "NOPE");
-                    break;       
+                break;       
         }
 
 		wrefresh(interface);
