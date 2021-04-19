@@ -53,7 +53,7 @@ void liga_desliga_alarme(){
 
 void *play_audio(){
     while(alarm_dl){
-        system("omxplayer ../audio/subdive.wav");
+        system("omxplayer audio/subdive.wav");
     }
     one_on=1;
     pthread_exit(NULL);
