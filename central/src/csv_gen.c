@@ -31,19 +31,15 @@ void create_csv(char *d_h, char *com_trig){
         fprintf(fp, "Data e hora,Comando,Acionamento Sensor,Acionamento Alarme\n");
     }
     else{
-        char str[25];
-        for(int j;j<25;j++){
-            str[j]=d_h[j];
-        }
-        str[24]='\0';
+        d_h[24]='\0';
         if(com_trig[0]=='L' || com_trig[0]=='D'){
-            fprintf(fp, "%s,,%s,\n", str, com_trig);
+            fprintf(fp, "%s,,%s,\n", d_h, com_trig);
         }
         else if(com_trig[0]=='O'){
-            fprintf(fp, "%s,%s,,\n", str, com_trig);
+            fprintf(fp, "%s,%s,,\n", d_h, com_trig);
         }
         else{
-            fprintf(fp, "%s,,,%s\n", str, com_trig);
+            fprintf(fp, "%s,,,%s\n", d_h, com_trig);
         }
         
     }
