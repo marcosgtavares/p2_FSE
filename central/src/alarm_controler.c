@@ -3,18 +3,27 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <ncurses.h>
+#include <time.h>
 
 #include "../inc/alarm_controler.h"
+#include "../inc/csv_gen.h"
 
 int alarm_dl=0;
 int sum_s=0;
 int sum_s2=0;
 int one_on=1;
+time_t rawtime;
+struct tm * timeinfo;
 
 WINDOW *interface;
 
 void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos sensores e se o alarme será acionado ou nao
     pthread_t audio_alarm;
+    
+    
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    create_csv(asctime (timeinfo),sensor_state);
 
     mvwprintw(interface, 1, 2, "SP1:%c",sensor_state[0]);mvwprintw(interface, 1, 8, "SP2:%c",sensor_state[1]);
     mvwprintw(interface, 1, 14, "SA1:%c",sensor_state[2]);mvwprintw(interface, 1, 32, "SA4:%c",sensor_state[5]);
@@ -30,7 +39,10 @@ void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos
             
             if(alarm_dl && one_on){//Caso tenha pelo menos um sensor acionado e o audio nao esteja tocando
                 one_on=0;
-                mvwprintw(interface, 8, 22, "ALARME ACIONADO");
+                time ( &rawtime );
+                timeinfo = localtime ( &rawtime );
+                create_csv(asctime (timeinfo),"Alarme acionado");
+                mvwprintw(interface, 8, 18, "ALARME ACIONADO    ");
                 wrefresh(interface);
                 pthread_create(&audio_alarm, NULL, play_audio, NULL);
             }
@@ -70,6 +82,9 @@ void *play_audio(){//Da play no audio do alarme(apenas um por vez)
         system("aplay audio/subdive.wav > /dev/null 2>&1");
     }
     mvwprintw(interface, 8, 18, "ALARME NAO ACIONADO");
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    create_csv(asctime (timeinfo),"Alarme desativado");
     wrefresh(interface);
     one_on=1;
     pthread_exit(NULL);

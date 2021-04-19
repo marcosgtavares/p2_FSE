@@ -5,11 +5,13 @@
 #include <pthread.h> 
 #include <signal.h>
 #include <ncurses.h>
+#include <time.h>
 
 #include "../inc/server.h"
 #include "../inc/client.h"
 #include "../inc/alarm_controler.h"
 #include "../inc/w_interface.h"
+#include "../inc/csv_gen.h"
 
 
 int sockets;
@@ -80,7 +82,11 @@ int main(int argc, char *argv[]) {
     send_message("I", cliente, ret);
     
     
-
+    time_t rawtime;
+    struct tm * timeinfo;
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );//Captura de tempo para criação do nome do arquivo csv
+    create_csv(asctime (timeinfo),"S");//Criação do arquivo csv
     
 
     commands->input = input;
