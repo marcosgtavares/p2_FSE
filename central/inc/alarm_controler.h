@@ -3,6 +3,6 @@
 
 void handle_change_s(char *sensor_state);
 void liga_desliga_alarme();
-
+void *play_audio();
 
 #endif
