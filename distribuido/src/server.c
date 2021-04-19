@@ -4,11 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "../inc/server.h"
-#include "../inc/gpio.h"
-#include "../inc/bme280_i2c.h"
 #include <pthread.h>
 #include <signal.h>
+
+#include "../inc/server.h"
+#include "../inc/client.h"
+
+#include "../inc/gpio.h"
+#include "../inc/bme280_i2c.h"
 
 
 float temp, hum;
