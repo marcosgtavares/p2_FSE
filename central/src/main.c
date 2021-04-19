@@ -9,6 +9,7 @@
 #include "../inc/server.h"
 #include "../inc/client.h"
 #include "../inc/alarm_controler.h"
+#include "../inc/w_interface.h"
 
 
 int sockets;
