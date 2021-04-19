@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     alarm_params->sockets=sockets;
 
 
-    liga_desliga_alarme();
+   
 
     pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
     char ordem[4];
 
     usleep(10000);
-
+ liga_desliga_alarme();
 
     send_message(I, cliente, th);
 
