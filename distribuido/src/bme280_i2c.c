@@ -27,7 +27,7 @@ struct param_adress *th;
 void end_execB(int sigint){
     close(fd);
 	free(dev);
-    pthread_exit(NULL);
+    exit(0);
 }
 
 void timer(int signum){//Le a temperatura a cada segundo

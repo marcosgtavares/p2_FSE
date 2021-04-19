@@ -53,7 +53,7 @@ void liga_desliga_alarme(){//Liga e deliga o alarme
 
 void *play_audio(){//Da play no audio do alarme(apenas um por vez)
     while(alarm_dl){
-        system("aplay audio/subdive.wav");
+        system("aplay audio/subdive.wav && clear");
     }
     one_on=1;
     pthread_exit(NULL);
