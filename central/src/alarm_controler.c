@@ -1,7 +1,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <pthread.h> 
+#include <pthread.h>
+#include <ncurses.h>
+
 #include "../inc/alarm_controler.h"
 
 int alarm_dl=0;
@@ -9,8 +11,16 @@ int sum_s=0;
 int sum_s2=0;
 int one_on=1;
 
+WINDOW *interface;
+
 void handle_change_s(char *sensor_state){//Lida com as mudanças dos estados dos sensores e se o alarme será acionado ou nao
     pthread_t audio_alarm;
+
+    mvwprintw(interface, 1, 2, "SP1:%c",sensor_state[0]);mvwprintw(interface, 1, 8, "SP2:%c",sensor_state[1]);
+    mvwprintw(interface, 1, 14, "SA1:%c",sensor_state[2]);mvwprintw(interface, 1, 32, "SA4:%c",sensor_state[5]);
+    mvwprintw(interface, 1, 20, "SA2:%c",sensor_state[3]);mvwprintw(interface, 1, 38, "SA5:%c",sensor_state[6]);
+    mvwprintw(interface, 1, 26, "SA3:%c",sensor_state[4]);mvwprintw(interface, 1, 44, "SA6:%c",sensor_state[7]);
+    wrefresh(interface);
 
     if(sum_s!=0){
         for(int i=0;i<8;i++){
@@ -47,6 +57,10 @@ void liga_desliga_alarme(){//Liga e deliga o alarme
     else{
         alarm_dl=1;
     }
+}
+
+void set_interface(WINDOW *inter){
+    interface=inter;
 }
 
 void *play_audio(){//Da play no audio do alarme(apenas um por vez)

@@ -23,12 +23,13 @@ void *screen_input(void *commands){
         wmove(input, 1, 19);
        
         mvwscanw(input,1, 19,"%s", ((struct input_params *)commands)->command);
+        mvwprintw(input, 1, 12, "Input:           ");
+        wrefresh(input);
         if(((struct input_params *)commands)->command[1]!='G'){
             cliente = connect_server(10122, "192.168.0.4");
             send_message(((struct input_params *)commands)->command, cliente, ((struct input_params *)commands)->ret);
         }
-        
-        if(((struct input_params *)commands)->command[1]!='G'){
+        else{
             if(((struct input_params *)commands)->command[2]=='1'){
                 mvwprintw(interface, 7, 21, "ALARME:%c",'L');
             }

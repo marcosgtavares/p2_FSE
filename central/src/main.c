@@ -59,19 +59,6 @@ int main(int argc, char *argv[]) {
     th=(struct input_params *)malloc(sizeof(struct input_params));
     //th=(char *)malloc(sizeof(char)*16);
 
-    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
-
-    pthread_create(&temp_humidity, NULL, te_hum, (void *)th);
-
-    char I[]="I";
-    char T[]="T";  
-
-    int cliente;
-
-    cliente = connect_server(servD, "192.168.0.4");
-    usleep(10000);
-    send_message(I, cliente, ret);
-    
     initscr();// Incia a janela do ncurses
 
     int max_y, max_x;
@@ -79,6 +66,22 @@ int main(int argc, char *argv[]) {
  
     WINDOW *interface = newwin(10,50,max_y/2-5,max_x/2-25);
     WINDOW *input = newwin(4,50,max_y/2+5,max_x/2-25);
+
+    set_interface(interface);
+
+    pthread_create(&alarm_watcher, NULL, treat_messages, (void *)alarm_params); 
+
+    pthread_create(&temp_humidity, NULL, te_hum, (void *)th);
+
+    int cliente;
+
+    cliente = connect_server(servD, "192.168.0.4");
+    usleep(10000);
+    send_message("I", cliente, ret);
+    
+    
+
+    
 
     commands->input = input;
     commands->interface = interface;
@@ -103,7 +106,7 @@ int main(int argc, char *argv[]) {
 
     usleep(10000);
 
-    send_message(T, cliente, ret);
+    send_message("T", cliente, ret);
 
     mvwprintw(interface, 5, 2, "Temperatura:%s.5",ret);mvwprintw(interface, 5, 24, "Humidade:%s.5",ret+6);
     
@@ -115,9 +118,11 @@ int main(int argc, char *argv[]) {
     pthread_create(&input_bar, NULL, screen_input, (void *)commands);
 
     while(1){
-        mvwprintw(interface, 5, 2, "Temperatura:%s.5",((struct input_params *)th)->ret);
-		mvwprintw(interface, 5, 24, "Humidade:%s.5",(((struct input_params *)th)->ret)+6);
+        mvwprintw(interface, 5, 2, "Temperatura:%s.5  ",((struct input_params *)th)->ret);
+		mvwprintw(interface, 5, 30, "Humidade:%s.5  ",(((struct input_params *)th)->ret)+6);
+        wmove(input, 1, 19);
 		wrefresh(interface);
+        wrefresh(input);
         sleep(1);
     }
 
