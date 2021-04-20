@@ -39,7 +39,7 @@ void timer(int signum){//Le a temperatura a cada segundo, ativado por alarme, e 
 	((struct param_adress *)th)->temp = (float)comp_data.temperature;
 	((struct param_adress *)th)->hum = (float)comp_data.humidity;
 
-	printf("|%f||%f|\n",th->temp, th->hum);
+	//printf("|%f||%f|\n",th->temp, th->hum);
 }
 
 void user_delay_ms(uint32_t period, void *intf_ptr){

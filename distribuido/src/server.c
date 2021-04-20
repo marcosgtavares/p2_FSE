@@ -74,7 +74,7 @@ void *treat_messages(void *servidorSocketv){
 		if((socketCliente = accept(servidorSocket, (struct sockaddr *) &clienteAddr, &clienteLength)) < 0)
 			printf("Falha no Accept\n");
 		
-		printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
+		//printf("Conexão do Cliente %s\n", inet_ntoa(clienteAddr.sin_addr));
 		
 		TrataClienteTCP(socketCliente);
         close(socketCliente);
@@ -121,7 +121,7 @@ void TrataClienteTCP(int socketCliente) {
 			gcvt(temp, 5, buffer);
 			gcvt(hum, 5, buffer+6);
 		}
-		else{//Usa os valores gerados pela thread que le o sensor bme280
+		else{//Usa os valores gerados pela funcao acionada pelo alarm que le o sensor bme280
 			gcvt(th->temp, 5, buffer);
 			gcvt(th->hum, 5, buffer+6);
 		}
