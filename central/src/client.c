@@ -70,8 +70,6 @@ void *te_hum(void *temp_hum){//Funçao que lida com a requisição de temperatur
 		sleep(1);
 		cliente = connect_server(10122, "192.168.0.4");
 		send_message("T", cliente, ((struct input_params *)temp_hum)->ret);
-		mvwprintw(((struct input_params *)temp_hum)->interface, 5, 2, "Temperatura:%s.5",((struct input_params *)temp_hum)->ret);
-		mvwprintw(((struct input_params *)temp_hum)->interface, 5, 24, "Humidade:%s.5",(((struct input_params *)temp_hum)->ret)+6);
-		wrefresh(((struct input_params *)temp_hum)->interface);
+		
 	}
 }

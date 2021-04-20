@@ -1,7 +1,7 @@
 # p2_FSE
 Trabalho 2 de FSE
 
-digite make no input do terminal para compilar o programa;
+digite make run (Na pasta distribuido, ira rodar o servidor distribuido, na pasta central, o central) no input do terminal para compilar o programa;
 
 Para iniciar o programa, primeiro inicie o servidor distribuido, depois inicie o servidor central, espere 1 segundo para iniciar os valores utilize os comandos abaixo para controlar o programa;
 
